@@ -1,9 +1,9 @@
 # Viridiana Álvarez: mon texte pour l'oral
 
 **Vidéo étudiée :** « Conoce a Viridiana Álvarez, alpinista mexicana. Orgullo de México », Canal Once (Once Noticias), mai 2025, 2 min 10.
-**Ma vidéo :** `video/viridiana_alvarez.mp4` (2 min 12). Lance-la et lis le texte en même temps : chaque partie correspond à une scène.
+**Ma vidéo :** `video/viridiana_alvarez.mp4` (2 min 13, musique : « Volatile Reaction », Kevin MacLeod). Lance-la et lis le texte en même temps : chaque partie correspond à une scène.
 
-> 💡 Les mots en **gras** apparaissent à l'écran au même moment : ils t'aident à garder le rythme.
+> 💡 Chaque partie commence avec un nouveau titre à l'écran (comme une section de site web). Les mots en **gras** sont ceux qui apparaissent à l'écran : ils t'aident à garder le rythme.
 > Si tu parles plus lentement, tu peux mettre la vidéo en pause entre deux parties.
 
 ---
@@ -16,28 +16,28 @@ Hola a todos. Hoy voy a presentar un vídeo de **Canal Once**, una cadena de tel
 **[0:10 El vídeo]**
 Es un **reportaje** corto de las noticias, publicado en **mayo de 2025**. En él vemos imágenes de montañas nevadas y una entrevista con Viridiana.
 
-**[0:21 ¿Quién es?]**
+**[0:20 ¿Quién es?]**
 Viridiana Álvarez nació en **1983** en **Aguascalientes**, en el centro de México. Hoy es **alpinista, conferencista y empresaria**.
 
-**[0:31 Sus inicios]**
+**[0:30 Sus inicios]** *(c'est le drop de la musique !)*
 Al principio, no era alpinista. Primero empezó a correr: **diez kilómetros**, después una **media maratón** y luego una **maratón**. En **2014** subió su primera gran montaña, el **Pico de Orizaba**, el volcán más alto de México.
 
 **[0:47 El Everest]**
 Allí arriba, se preguntó cómo sería la vista desde la montaña más alta del mundo. Y en **2017** llegó a la cima del **Everest**, a **8 848 metros**. Fue la primera mujer de Aguascalientes en conseguirlo.
 
-**[1:00 Primer récord]**
+**[0:59 Primer récord]**
 Después subió el **K2** en 2018 y el **Kangchenjunga** en 2019. Gracias a eso, consiguió su primer **récord Guinness**: el ascenso más rápido a las tres montañas más altas del mundo.
 
 **[1:15 Un récord histórico]**
 Pero no se detuvo. Siguió escalando las **catorce montañas** de más de ocho mil metros, y también las **siete cumbres**, es decir, la montaña más alta de cada continente. En **mayo de 2025** recibió su segundo récord Guinness: es la **primera mujer de la historia** en lograr las dos cosas.
 
-**[1:37 Su mensaje]**
+**[1:36 Su mensaje]**
 En la entrevista, Viridiana sonríe mucho y parece muy orgullosa. Su mensaje es muy positivo. Como dice ella: «**Los sueños se cumplen**».
 
 **[1:49 Mi opinión]**
 En mi opinión, Viridiana es un gran ejemplo de **perseverancia** y de **valentía**. Me gusta este vídeo porque muestra que una mujer puede llegar a la cima del mundo, y es una **inspiración** para todos. Por eso, para México, es un **orgullo nacional**.
 
-**[2:05 Fin]**
+**[2:04 Fin]**
 ¡Muchas gracias por vuestra atención! ¿Tenéis alguna pregunta?
 
 ---

@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Viridiana Álvarez — cinematic</title>
+<style>
+@font-face{font-family:Unb;font-weight:300;src:url(fonts/unbounded-latin-300-normal.woff2) format("woff2")}
+@font-face{font-family:Unb;font-weight:500;src:url(fonts/unbounded-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:Unb;font-weight:700;src:url(fonts/unbounded-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:400;src:url(fonts/inter-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:600;src:url(fonts/inter-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:800;src:url(fonts/inter-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:Playfair;font-style:italic;font-weight:700;src:url(fonts/playfair-display-latin-700-italic.woff2) format("woff2")}
+:root{--gold:#f6c46a;--ice:#cfe7f5}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#000}
+#stage{position:relative;width:1920px;height:1080px;overflow:hidden;background:#05070d;font-family:Inter,sans-serif;color:#fff}
+.layer,.scene{position:absolute;inset:0}
+.scene{visibility:hidden;overflow:hidden}
+.cam{position:absolute;inset:-8%;background-size:cover;background-position:center;will-change:transform}
+.shade{position:absolute;inset:0;pointer-events:none}
+.abs{position:absolute}
+.m{display:inline-block;overflow:hidden;vertical-align:bottom;padding:.22em .03em .08em;margin-top:-.22em}
+.w{display:inline-block;will-change:transform}
+.hero{font-family:Unb;font-weight:700;letter-spacing:-.01em;line-height:1;color:rgba(255,255,255,.9);
+  text-shadow:0 0 60px rgba(255,255,255,.25),0 10px 40px rgba(0,0,0,.25)}
+.sec{position:absolute;left:96px;bottom:110px;max-width:900px}
+.sec .lab{font-family:Inter;font-weight:600;font-size:20px;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:18px}
+.sec .ttl{font-family:Unb;font-weight:500;font-size:84px;line-height:1.02;letter-spacing:-.01em;text-shadow:0 8px 40px rgba(0,0,0,.35)}
+.sec .par{font-size:28px;line-height:1.45;color:rgba(255,255,255,.85);margin-top:20px;max-width:780px;text-shadow:0 2px 20px rgba(0,0,0,.5)}
+.glasscard{background:linear-gradient(135deg,rgba(255,255,255,.22),rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.35);
+  border-radius:28px;backdrop-filter:blur(18px) saturate(1.3);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+#nav{position:absolute;left:0;right:0;top:0;height:96px;display:flex;align-items:center;padding:0 96px;z-index:30;
+  font-size:19px;font-weight:600;letter-spacing:.06em}
+#nav .logo{font-family:Unb;font-weight:700;font-size:22px;letter-spacing:.12em;display:flex;gap:14px;align-items:center}
+#nav .menu{margin-left:auto;display:flex;gap:44px;position:relative}
+#navline{position:absolute;bottom:-12px;height:2px;background:#fff}
+#idx{position:absolute;right:96px;bottom:110px;z-index:30;text-align:right;font-weight:600;letter-spacing:.2em;font-size:18px}
+#idx .bar{width:220px;height:2px;background:rgba(255,255,255,.25);margin-top:14px;position:relative}
+#idx .bar i{position:absolute;left:0;top:0;bottom:0;background:#fff}
+#grain{position:absolute;inset:0;z-index:40;opacity:.05;mix-blend-mode:overlay;width:1920px;height:1080px;image-rendering:pixelated}
+#vign{position:absolute;inset:0;z-index:35;pointer-events:none;background:radial-gradient(120% 100% at 50% 45%,rgba(0,0,0,0) 55%,rgba(0,0,0,.55) 100%)}
+#fx,#cloudfx{position:absolute;inset:0;z-index:25;pointer-events:none;overflow:hidden}
+#cloudfx img{position:absolute;left:0;top:0;will-change:transform,opacity}
+#white{position:absolute;inset:0;z-index:26;background:#fff;opacity:0;pointer-events:none}
+#black{position:absolute;inset:0;z-index:50;background:#000;opacity:0}
+#zt{position:absolute;inset:0;z-index:24;pointer-events:none;visibility:hidden}
+</style>
+</head>
+<body>
+<div id="stage">
+
+<!-- S0 INTRO : above the clouds -->
+<section class="scene" id="s0">
+  <div class="cam" id="s0bg" style="background-image:url(assets/photos/sky_clouds.jpg)"></div>
+  <div class="layer" id="s0clouds"></div>
+  <div class="shade" style="background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,0) 30%,rgba(0,0,0,0) 70%,rgba(0,0,0,.35))"></div>
+  <div class="abs" id="s0k" style="left:0;right:0;top:330px;text-align:center;font-weight:600;letter-spacing:.5em;font-size:22px;color:rgba(255,255,255,.85)">CANAL ONCE · ONCE NOTICIAS</div>
+  <div class="abs hero" id="s0t" style="left:0;right:0;top:400px;text-align:center;font-size:112px;white-space:nowrap">VIRIDIANA ÁLVAREZ</div>
+  <div class="abs" id="s0s" style="left:0;right:0;top:590px;text-align:center;font-size:34px;font-weight:400;color:rgba(255,255,255,.9)">La alpinista que conquistó las montañas más altas del mundo</div>
+</section>
+
+<!-- S1 EL REPORTAJE -->
+<section class="scene" id="s1">
+  <div class="cam" id="s1bg" style="background-image:url(assets/photos/clouds_valley.jpg);filter:blur(6px) brightness(.7)"></div>
+  <div class="layer" id="s1cards">
+    <div class="abs glasscard" id="s1c1" style="left:820px;top:170px;width:900px;height:506px;padding:14px">
+      <div style="width:100%;height:100%;border-radius:18px;background:url(assets/clip_snow.jpg) center/cover"></div></div>
+    <div class="abs glasscard" id="s1c2" style="left:1160px;top:470px;width:620px;height:349px;padding:12px">
+      <div style="width:100%;height:100%;border-radius:14px;background:url(assets/clip_summit.jpg) center/cover"></div></div>
+  </div>
+  <div class="sec" id="s1sec"><div class="lab">01 — El documento</div><div class="ttl">El reportaje</div>
+    <div class="par">Canal Once · Once Noticias<br>Mayo de 2025 · 2 min 10</div></div>
+</section>
+
+<!-- S2 QUIEN ES -->
+<section class="scene" id="s2">
+  <div class="cam" id="s2bg" style="background-image:url(assets/clip_interview.jpg);background-size:140%;background-position:58% 6%"></div>
+  <div class="shade" style="background:linear-gradient(90deg,rgba(0,0,0,.75),rgba(0,0,0,.25) 55%,rgba(0,0,0,0))"></div>
+  <div class="sec" id="s2sec"><div class="lab">02 — La protagonista</div><div class="ttl">¿Quién es?</div>
+    <div class="par">Viridiana Álvarez Chávez<br>Aguascalientes, México · 1983<br>Alpinista · conferencista · empresaria</div></div>
+</section>
+
+<!-- S3 INICIOS -->
+<section class="scene" id="s3">
+  <div class="cam" id="s3a" style="background-image:url(assets/photos/marathon.jpg)"></div>
+  <div class="cam" id="s3b" style="background-image:url(assets/photos/orizaba.jpg)"></div>
+  <div class="shade" id="s3shade" style="background:rgba(0,0,0,.35)"></div>
+  <div class="abs hero" id="s3num" style="left:0;right:0;top:300px;text-align:center;font-size:300px"></div>
+  <div class="abs" id="s3numl" style="left:0;right:0;top:640px;text-align:center;font-family:Unb;font-weight:300;font-size:46px;letter-spacing:.08em"></div>
+  <div class="sec" id="s3sec"><div class="lab">03 — Sus inicios</div><div class="ttl">Pico de Orizaba</div>
+    <div class="par">2014 · 5 636 m<br>El volcán más alto de México</div></div>
+</section>
+
+<!-- S4 EVEREST -->
+<section class="scene" id="s4">
+  <div class="cam" id="s4bg" style="background-image:url(assets/photos/everest.jpg);background-position:50% 40%"></div>
+  <div class="shade" style="background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,0) 35%,rgba(0,0,0,.55))"></div>
+  <div class="abs hero" id="s4num" style="left:0;right:0;top:250px;text-align:center;font-size:250px;white-space:nowrap">0 m</div>
+  <div class="sec" id="s4sec"><div class="lab">04 — La cima del mundo</div><div class="ttl">Everest</div>
+    <div class="par">16 de mayo de 2017<br>Primera mujer de Aguascalientes en la cima</div></div>
+</section>
+
+<!-- S5 PRIMER RECORD -->
+<section class="scene" id="s5">
+  <div class="cam" id="s5bg" style="background-image:url(assets/photos/himalaya_aerial.jpg)"></div>
+  <div class="shade" style="background:rgba(4,10,25,.45)"></div>
+  <div class="layer" id="s5row"></div>
+  <div class="abs" id="s5medal" style="left:1400px;top:140px;width:380px;height:380px"></div>
+  <div class="sec" id="s5sec"><div class="lab">05 — Primer récord</div><div class="ttl">Récord Guinness 2020</div>
+    <div class="par">El ascenso más rápido a las tres montañas más altas del mundo</div></div>
+</section>
+
+<!-- S6 GRAN RECORD -->
+<section class="scene" id="s6">
+  <div class="cam" id="s6a" style="background-image:url(assets/photos/climbers_line.jpg)"></div>
+  <div class="cam" id="s6b" style="background-image:url(assets/photos/climbers_snow.jpg)"></div>
+  <div class="cam" id="s6c" style="background-image:url(assets/photos/climber_rope.jpg);background-position:50% 35%"></div>
+  <div class="cam" id="s6d" style="background-image:url(assets/clip_snow.jpg)"></div>
+  <div class="cam" id="s6e" style="background-image:url(assets/photos/amadablam.jpg);background-position:50% 30%"></div>
+  <div class="cam" id="s6f" style="background-image:url(assets/photos/clouds_sun.jpg)"></div>
+  <div class="cam" id="s6g" style="background-image:url(assets/clip_summit.jpg);background-position:50% 30%"></div>
+  <div class="shade" id="s6shade" style="background:rgba(0,0,0,.4)"></div>
+  <div class="abs hero" id="s6num" style="left:0;right:0;top:220px;text-align:center;font-size:340px">1</div>
+  <div class="abs" id="s6name" style="left:0;right:0;top:620px;text-align:center;font-family:Unb;font-weight:300;font-size:44px;letter-spacing:.1em"></div>
+  <div class="layer" id="s6conts"></div>
+  <div class="sec" id="s6secA"><div class="lab">06 — Un récord histórico</div><div class="ttl">14 ochomiles</div>
+    <div class="par">Las montañas de más de 8 000 metros</div></div>
+  <div class="sec" id="s6secB"><div class="lab">06 — Un récord histórico</div><div class="ttl">+ 7 cumbres</div>
+    <div class="par">La montaña más alta de cada continente</div></div>
+  <div class="layer" id="s6slam">
+    <div class="abs hero" id="s6big" style="left:0;right:0;top:300px;text-align:center;font-size:150px;line-height:1.05">PRIMERA MUJER<br><span style="color:var(--gold)">DE LA HISTORIA</span></div>
+    <div class="abs" id="s6date" style="left:0;right:0;top:680px;text-align:center">
+      <span class="glasscard" style="display:inline-block;padding:18px 40px;font-size:32px;font-weight:600;border-radius:999px">19 de mayo de 2025 · 2.º Récord Guinness</span></div>
+  </div>
+</section>
+
+<!-- S7 MENSAJE -->
+<section class="scene" id="s7">
+  <div class="cam" id="s7bg" style="background-image:url(assets/photos/arms_open.jpg);background-position:50% 30%"></div>
+  <div class="layer" id="s7clouds"></div>
+  <div class="shade" style="background:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.45))"></div>
+  <div class="abs" id="s7q" style="left:0;right:0;top:330px;text-align:center;font-family:Playfair;font-style:italic;font-weight:700;font-size:150px;white-space:nowrap;text-shadow:0 10px 50px rgba(0,0,0,.4)"></div>
+  <div class="abs" id="s7who" style="left:0;right:0;top:560px;text-align:center;font-size:34px;font-weight:600;letter-spacing:.2em;color:rgba(255,255,255,.85)">— VIRIDIANA ÁLVAREZ</div>
+  <div class="sec" id="s7sec"><div class="lab">07 — Su mensaje</div></div>
+</section>
+
+<!-- S8 OPINION -->
+<section class="scene" id="s8">
+  <div class="cam" id="s8a" style="background-image:url(assets/photos/climber_rope.jpg);background-position:50% 40%"></div>
+  <div class="cam" id="s8b" style="background-image:url(assets/photos/climbers_ice.jpg);background-position:50% 40%"></div>
+  <div class="cam" id="s8c" style="background-image:url(assets/photos/clouds_gold.jpg)"></div>
+  <div class="cam" id="s8d" style="background-image:url(assets/photos/flag_mx.jpg)"></div>
+  <div class="shade" style="background:rgba(0,0,0,.35);z-index:3"></div>
+  <div class="abs hero" id="s8word" style="left:0;right:0;top:400px;text-align:center;font-size:150px;white-space:nowrap;z-index:4"></div>
+  <div class="abs" id="s8sub" style="left:0;right:0;top:590px;text-align:center;font-size:36px;font-weight:600;z-index:4"></div>
+  <div class="sec" id="s8sec" style="z-index:4"><div class="lab">08 — Mi opinión</div></div>
+</section>
+
+<!-- S9 GRACIAS -->
+<section class="scene" id="s9">
+  <div class="cam" id="s9bg" style="background-image:url(assets/photos/clouds_gold.jpg)"></div>
+  <div class="layer" id="s9clouds"></div>
+  <div class="shade" style="background:rgba(0,0,0,.2)"></div>
+  <div class="abs hero" id="s9t" style="left:0;right:0;top:380px;text-align:center;font-size:120px;white-space:nowrap">¡MUCHAS GRACIAS!</div>
+  <div class="abs" id="s9s" style="left:0;right:0;top:580px;text-align:center;font-size:42px;font-weight:600">¿Tenéis alguna pregunta?</div>
+  <div class="abs" id="s9c" style="left:0;right:0;bottom:60px;text-align:center;font-size:17px;color:rgba(255,255,255,.75);line-height:1.6">
+    Vídeo original: Canal Once · Fotos: Pexels<br>Música: “Volatile Reaction” Kevin MacLeod (incompetech.com) · Licencia CC BY 4.0</div>
+</section>
+
+<div id="zt"><img id="ztstroke" class="abs" style="left:0;top:0;transform-origin:0 0"></div>
+<div id="cloudfx"></div>
+<div id="white"></div>
+<div id="fx"></div>
+<div id="nav">
+  <div class="logo"><svg width="34" height="28" viewBox="0 0 34 28"><path d="M0 28 L12 6 L18 16 L22 10 L34 28 Z" fill="#fff"/></svg>VIRIDIANA</div>
+  <div class="menu" id="menu"><span>Inicio</span><span>Reportaje</span><span>Inicios</span><span>Everest</span><span>Récords</span><span>Mensaje</span><i id="navline"></i></div>
+</div>
+<div id="idx"><span id="idxn">01 / 10</span><div class="bar"><i id="idxb"></i></div></div>
+<div id="vign"></div>
+<canvas id="grain" width="480" height="270"></canvas>
+<div id="black"></div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const E={lin:x=>x,out:x=>1-Math.pow(1-x,3),out5:x=>1-Math.pow(1-x,5),in:x=>x*x*x,
+  inOut:x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2,
+  inExpo:x=>x===0?0:Math.pow(2,10*x-10),
+  back:x=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)}};
+const P=(t,a,b,e=E.out)=>e(clamp((t-a)/(b-a)));
+const lerp=(a,b,p)=>a+(b-a)*p;
+function rnd(i){const x=Math.sin(i*127.1+311.7)*43758.5453;return x-Math.floor(x)}
+const tf=(el,s)=>{el.style.transform=s};
+const op=(el,o)=>{el.style.opacity=o};
+const show=(el,v)=>{el.style.visibility=v?'visible':'hidden'};
+
+// ---------- music grid: "Volatile Reaction", 155 BPM ----------
+const BEAT=60/155, BAR=4*BEAT, PH=0.38;
+const B=n=>PH+n*BAR;
+const SC=[['s0',0,B(6)],['s1',B(6),B(13)],['s2',B(13),B(19)],['s3',B(19),B(30)],['s4',B(30),B(38)],
+          ['s5',B(38),B(48)],['s6',B(48),B(62)],['s7',B(62),B(70)],['s8',B(70),B(80)],['s9',B(80),133]];
+const DURATION=133;
+const TRL=[['clouds',B(6)],['push',B(13)],['flare',B(19)],['zoomtext',B(30)],['push',B(38)],['clouds',B(48)],['flare',B(62)],['push',B(70)],['clouds',B(80)]];
+const trAt=t=>{const f=TRL.find(x=>Math.abs(x[1]-t)<1e-6);return f?f[0]:null};
+const WIN={clouds:[1.1,0.9],push:[0.45,0.55],flare:[0.35,0.6],zoomtext:[1.4,0.35]};
+
+// ---------- text helpers ----------
+function splitWords(el,txt){txt=txt??el.textContent;el.innerHTML='';
+  return txt.split(' ').map((w,i,a)=>{const m=document.createElement('span');m.className='m';const s=document.createElement('span');s.className='w';
+    s.textContent=w;m.appendChild(s);el.appendChild(m);if(i<a.length-1)el.appendChild(document.createTextNode(' '));return s;});}
+function splitChars(el,txt){txt=txt??el.textContent;el.innerHTML='';
+  return [...txt].map(c=>{const m=document.createElement('span');m.className='m';const s=document.createElement('span');s.className='w';
+    s.textContent=c===' '?' ':c;m.appendChild(s);el.appendChild(m);return s;});}
+function rise(sp,t,st,stag=.05,dur=.8,e=E.out5){sp.forEach((s,i)=>{const p=P(t,st+i*stag,st+i*stag+dur,e);
+  s.style.transform=`translateY(${(1-p)*115}%)`;});}
+// "website" section block: label slides, title words rise, paragraph un-blurs
+function prepSec(el){const lab=el.querySelector('.lab'),ttl=el.querySelector('.ttl'),par=el.querySelector('.par');
+  return {lab,ttl:ttl?splitWords(ttl):[],par};}
+function secAnim(s,t,st){op(s.lab,P(t,st,st+.6));tf(s.lab,`translateX(${(1-P(t,st,st+.8))*-40}px)`);
+  rise(s.ttl,t,st+.15,.08,.9);
+  if(s.par){const p=P(t,st+.6,st+1.4);op(s.par,p);tf(s.par,`translateY(${(1-p)*30}px)`);s.par.style.filter=`blur(${(1-p)*8}px)`;}}
+// camera: slow push + drift + subtle 3D tilt
+function cam(el,t,o={}){const {s0=1.08,s1=1.2,d=8,x0=0,x1=0,y0=0,y1=0,ry=0}=o;const p=clamp(t/d);
+  const hx=Math.sin(t*0.9)*4+Math.sin(t*2.3)*1.5, hy=Math.cos(t*0.7)*3;
+  el.style.transform=`perspective(1400px) rotateY(${ry*(1-p)}deg) translate(${lerp(x0,x1,p)+hx}px,${lerp(y0,y1,p)+hy}px) scale(${lerp(s0,s1,p)})`;}
+
+// drifting parallax clouds inside a scene
+function mkClouds(host,n,seed){return [...Array(n)].map((_,i)=>{const im=document.createElement('img');im.src=`assets/clouds/c${(i+seed)%8}.png`;
+  im.style.cssText='position:absolute;left:0;top:0;width:900px;height:900px;';host.appendChild(im);
+  return {im,x:rnd(seed*31+i)*2600-300,y:350+rnd(seed*17+i)*650,s:.6+rnd(seed*7+i)*1.6,v:20+rnd(seed*3+i)*60,a:.35+rnd(seed+i*9)*.5};});}
+function driftClouds(cl,t){cl.forEach(c=>{const x=((c.x+t*c.v*c.s)%2700)-600;
+  c.im.style.transform=`translate(${x}px,${c.y-450*c.s}px) scale(${c.s})`;c.im.style.opacity=c.a;});}
+
+// ---------- build ----------
+const s0k=splitChars($('#s0k')), s0t=splitChars($('#s0t')), s0s=splitWords($('#s0s'));
+const s0cl=mkClouds($('#s0clouds'),9,1), s7cl=mkClouds($('#s7clouds'),6,4), s9cl=mkClouds($('#s9clouds'),8,6);
+const sec1=prepSec($('#s1sec')),sec2=prepSec($('#s2sec')),sec3=prepSec($('#s3sec')),sec4=prepSec($('#s4sec')),
+      sec5=prepSec($('#s5sec')),sec6A=prepSec($('#s6secA')),sec6B=prepSec($('#s6secB')),sec7=prepSec($('#s7sec')),sec8=prepSec($('#s8sec'));
+const PEAKS=[['Everest','8 848 m','2017'],['K2','8 611 m','2018'],['Kangchenjunga','8 586 m','2019']];
+const s5cards=PEAKS.map(([n,h,y],i)=>{const d=document.createElement('div');d.className='abs glasscard';
+  d.style.cssText+=`;left:${150+i*400}px;top:190px;width:360px;height:400px;padding:40px;display:flex;flex-direction:column;justify-content:space-between`;
+  d.innerHTML=`<div style="font-family:Unb;font-weight:700;font-size:92px;color:var(--gold)">${y}</div><div><div style="font-family:Unb;font-weight:500;font-size:${n.length>8?32:48}px">${n}</div><div style="font-size:28px;opacity:.8;margin-top:8px">${h}</div></div>`;
+  $('#s5row').appendChild(d);return d;});
+$('#s5medal').innerHTML=`<svg viewBox="0 0 380 380" width="380" height="380"><defs><radialGradient id="gg" cx="40%" cy="35%"><stop offset="0" stop-color="#fff3c4"/><stop offset=".5" stop-color="#f6c46a"/><stop offset="1" stop-color="#b9821f"/></radialGradient></defs>
+ <g id="medrays" transform="translate(190 190)"></g><circle cx="190" cy="190" r="130" fill="url(#gg)"/><circle cx="190" cy="190" r="112" fill="none" stroke="#7a5310" stroke-width="3" stroke-dasharray="5 9"/>
+ <text x="190" y="165" text-anchor="middle" font-family="Inter" font-weight="800" font-size="20" fill="#5a3d08" letter-spacing="4">GUINNESS</text>
+ <text x="190" y="215" text-anchor="middle" font-family="Unb" font-weight="700" font-size="46" fill="#5a3d08">RÉCORD</text>
+ <text x="190" y="252" text-anchor="middle" font-family="Inter" font-weight="800" font-size="26" fill="#5a3d08">2020</text></svg>`;
+for(let i=0;i<20;i++){const r=document.createElementNS('http://www.w3.org/2000/svg','rect');r.setAttribute('x',-5);r.setAttribute('y',-185);r.setAttribute('width',10);r.setAttribute('height',40);r.setAttribute('rx',5);r.setAttribute('fill','#ffe3a1');r.setAttribute('transform',`rotate(${i*18})`);$('#medrays').appendChild(r);}
+const OCHO=['Everest','K2','Kangchenjunga','Lhotse','Makalu','Cho Oyu','Dhaulagiri','Manaslu','Nanga Parbat','Annapurna','Gasherbrum I','Broad Peak','Gasherbrum II','Shisha Pangma'];
+const CONT=['Asia','África','Europa','América del Norte','América del Sur','Antártida','Oceanía'];
+const s6c=CONT.map(n=>{const d=document.createElement('div');d.className='abs glasscard';
+  d.style.cssText+=`;left:0;top:0;padding:18px 34px;border-radius:999px;font-size:34px;font-weight:600;white-space:nowrap`;d.textContent=n;$('#s6conts').appendChild(d);return d;});
+const s6big=$('#s6big');
+const s7q=splitWords($('#s7q'),'Los sueños se cumplen');
+const s9t=splitChars($('#s9t')), s9s=splitWords($('#s9s'));
+const menuItems=[...document.querySelectorAll('#menu span')];
+
+// ---------- zoom-through word (canvas mask with letter-shaped holes) ----------
+const ZW=3840,ZH=2160; let ztOrigin=[960,540], ZT=null;
+function buildZT(word){
+  const font='700 600px Unb';
+  const c=document.createElement('canvas');c.width=ZW;c.height=ZH;const g=c.getContext('2d');
+  g.fillStyle='#000';g.fillRect(0,0,ZW,ZH);g.globalCompositeOperation='destination-out';
+  g.font=font;g.textAlign='center';g.textBaseline='middle';g.fillText(word,ZW/2,ZH/2);
+  const s=document.createElement('canvas');s.width=ZW;s.height=ZH;const h=s.getContext('2d');
+  h.font=font;h.textAlign='center';h.textBaseline='middle';h.lineWidth=7;h.strokeStyle='rgba(255,255,255,.95)';
+  h.shadowColor='rgba(255,255,255,.9)';h.shadowBlur=40;h.strokeText(word,ZW/2,ZH/2);
+  h.shadowBlur=0;h.fillStyle='rgba(255,255,255,.10)';h.fillText(word,ZW/2,ZH/2);
+  const d=g.getImageData(0,0,ZW,ZH).data;const hole=(x,y)=>d[((y|0)*ZW+(x|0))*4+3]===0;let best=null;
+  for(let y=ZH*.3;y<ZH*.7;y+=8)for(let x=ZW*.3;x<ZW*.7;x+=8){
+    if(!hole(x,y))continue;let ok=true;for(let k=0;k<16&&ok;k++){const a=k/16*6.283;if(!hole(x+Math.cos(a)*36,y+Math.sin(a)*36))ok=false;}
+    if(!ok)continue;const dist=Math.hypot(x-ZW/2,y-ZH/2);if(!best||dist<best[0])best=[dist,x,y];}
+  if(best) ztOrigin=[best[1]/2,best[2]/2];
+  return {mask:c.toDataURL('image/png'),stroke:s.toDataURL('image/png')};
+}
+
+// ---------- scene renderers (lt = local time) ----------
+const R={
+s0(lt){cam($('#s0bg'),lt,{s0:1.12,s1:1.32,d:10,y0:30,y1:-20});driftClouds(s0cl,lt);
+  s0k.forEach((s,i)=>{const p=P(lt,.6+i*.03,1.4+i*.03);s.style.transform=`translateY(${(1-p)*115}%)`;});
+  s0t.forEach((s,i)=>{const p=P(lt,1.2+i*.06,2.4+i*.06,E.out5);s.style.transform=`translateY(${(1-p)*115}%) scale(${1+(1-p)*.4})`;s.style.filter=`blur(${(1-p)*14}px)`;});
+  tf($('#s0t'),`scale(${1+lt*.012})`);$('#s0t').style.letterSpacing=`${lerp(.06,-.01,P(lt,1,5))}em`;
+  rise(s0s,lt,3,.05,.9);},
+s1(lt){cam($('#s1bg'),lt,{s0:1.1,s1:1.25,d:11});
+  const a=P(lt,.3,1.6,E.out5),b=P(lt,.9,2.2,E.out5);
+  tf($('#s1c1'),`perspective(1600px) translate3d(${(1-a)*500}px,${(1-a)*60}px,0) rotateY(${lerp(-38,-14,a)+Math.sin(lt*.6)*2}deg) rotateX(${4+Math.sin(lt*.5)}deg)`);op($('#s1c1'),a);
+  tf($('#s1c2'),`perspective(1600px) translate3d(${(1-b)*600}px,${(1-b)*120+Math.sin(lt*.8)*8}px,120px) rotateY(${lerp(-40,-18,b)}deg)`);op($('#s1c2'),b);
+  secAnim(sec1,lt,.9);},
+s2(lt){cam($('#s2bg'),lt,{s0:1.25,s1:1.08,d:9.5,x0:-40,x1:30});secAnim(sec2,lt,.5);},
+s3(lt){ // the drop: marathon numbers on the beat, then whip to Orizaba
+  const cutO=B(25)-B(19);
+  const marks=[[0,'10 km','Primera carrera'],[2*BAR,'21 km','Media maratón'],[4*BAR,'42 km','Maratón']];
+  let k=0;marks.forEach((m,i)=>{if(lt>=m[0])k=i;});const since=lt-marks[k][0];
+  const a=$('#s3a');a.style.transform=`scale(${1.35-since*.03+(since<.25?(.25-since)*.4:0)}) translate(${(k-1)*60}px,0)`;a.style.filter=`blur(${since<.1?6:0}px)`;
+  $('#s3num').textContent=marks[k][1];$('#s3numl').textContent=marks[k][2];
+  const np=P(since,0,.35,E.back);tf($('#s3num'),`scale(${lerp(1.6,1,np)})`);
+  op($('#s3num'),lt<cutO-.3?clamp(np*2):1-P(lt,cutO-.3,cutO));
+  op($('#s3numl'),lt<cutO-.3?P(since,.1,.4):1-P(lt,cutO-.3,cutO));tf($('#s3numl'),`translateY(${(1-P(since,.1,.5))*20}px)`);
+  const w=P(lt,cutO-.25,cutO+.35,E.inOut);const b=$('#s3b');
+  b.style.clipPath=`inset(0 0 0 ${(1-w)*100}%)`;b.style.transform=`scale(${1.3-clamp(lt-cutO,0,20)*.022}) translateX(${(1-w)*200}px)`;
+  op($('#s3shade'),lt<cutO?1:1-.6*P(lt,cutO,cutO+1));
+  secAnim(sec3,lt,cutO+.6);op($('#s3sec'),lt<cutO?0:1-P(lt,B(30)-B(19)-1.6,B(30)-B(19)-1.1));},
+s4(lt){cam($('#s4bg'),lt,{s0:1.18,s1:1.04,d:12,y0:-30,y1:10});
+  const n=Math.round(8848*P(lt,.4,4.5,E.out));$('#s4num').textContent=String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' ')+' m';
+  op($('#s4num'),P(lt,.3,.9));tf($('#s4num'),`scale(${lerp(.85,1,P(lt,.3,4.5))})`);$('#s4num').style.filter=`blur(${(1-P(lt,.3,1.2))*10}px)`;
+  secAnim(sec4,lt,4.6);},
+s5(lt){cam($('#s5bg'),lt,{s0:1.1,s1:1.3,d:15,x0:40,x1:-40});
+  s5cards.forEach((d,i)=>{const st=.5+i*1.55;const p=P(lt,st,st+1.1,E.out5);
+    tf(d,`perspective(1500px) translate3d(0,${(1-p)*200}px,${(1-p)*-400}px) rotateY(${lerp(50,14-i*14,p)+Math.sin(lt*.7+i)*2}deg)`);op(d,clamp(p*1.5));});
+  const mp=clamp(P(lt,6.2,6.9,E.back),0,1.2);tf($('#s5medal'),`scale(${lerp(2.4,1,clamp(mp))}) rotate(${lerp(-30,-6,clamp(mp))+Math.sin(lt)*2}deg)`);op($('#s5medal'),P(lt,6.2,6.5));
+  $('#medrays').setAttribute('transform',`translate(190 190) rotate(${lt*14})`);
+  const imp=lt>6.9&&lt<7.3?(7.3-lt)*30:0;tf($('#s5row'),`translate(${Math.sin(lt*90)*imp}px,${Math.cos(lt*120)*imp}px)`);
+  secAnim(sec5,lt,7.2);},
+s6(lt){
+  const T1=B(54)-B(48), T2=B(58.5)-B(48);
+  const imgs=['#s6a','#s6b','#s6c','#s6d','#s6e'].map($);
+  const step=2*BEAT, cut=Math.floor(lt/step), since=lt-cut*step;
+  imgs.forEach((im,i)=>{const on=lt<T1+.05&&cut%imgs.length===i;show(im,on);if(on)im.style.transform=`scale(${1.25-since*.05+(since<.12?.08:0)}) rotate(${(i%2?1:-1)*.6}deg)`;});
+  const ki=Math.min(13,Math.floor(lt/(T1/14)));
+  $('#s6num').textContent=String(ki+1);$('#s6name').textContent=OCHO[ki];
+  const kp=lt-ki*(T1/14);tf($('#s6num'),`scale(${1+Math.max(0,.18-kp)*.8})`);
+  op($('#s6num'),lt<T1?1:0);op($('#s6name'),lt<T1?1:0);
+  secAnim(sec6A,lt,.4);op($('#s6secA'),lt<T1-.2?1:0);
+  const f=$('#s6f');show(f,lt>=T1&&lt<T2+.3);
+  f.style.transform=`scale(${1.3-(lt-T1)*.03})`;f.style.clipPath=`circle(${P(lt,T1,T1+.6,E.inOut)*80}% at 50% 50%)`;
+  s6c.forEach((d,i)=>{const st=T1+.5+i*.5;const p=P(lt,st,st+.7,E.out5);const ang=-90+i*(360/7)+(lt-T1)*8;
+    const x=960+Math.cos(ang*Math.PI/180)*640-d.offsetWidth/2,y=440+Math.sin(ang*Math.PI/180)*280-d.offsetHeight/2;
+    tf(d,`translate(${x}px,${y}px) scale(${p})`);op(d,lt<T2-.2?clamp(p):1-P(lt,T2-.2,T2));});
+  secAnim(sec6B,lt,T1+.4);op($('#s6secB'),lt>=T1&&lt<T2-.1?1:0);
+  const g=$('#s6g');show(g,lt>=T2-.05);
+  g.style.transform=`scale(${1.25-(lt-T2)*.015})`;g.style.filter=`sepia(.35) saturate(1.3) brightness(${.65+.6*Math.max(0,.3-(lt-T2))})`;
+  op($('#s6shade'),lt<T1?1:lt<T2?.5:1);
+  const sl=P(lt,T2-.15,T2+.1,E.in);show($('#s6slam'),lt>=T2-.15);
+  tf(s6big,`scale(${lerp(3,1,sl)})`);op(s6big,sl);s6big.style.filter=`blur(${(1-sl)*12}px)`;
+  const sh=lt>T2+.1&&lt<T2+.6?(T2+.6-lt)*36:0;tf($('#s6slam'),`translate(${Math.sin(lt*97)*sh}px,${Math.cos(lt*131)*sh}px)`);
+  const dp=P(lt,T2+1.2,T2+1.9,E.back);tf($('#s6date'),`scale(${dp})`);op($('#s6date'),clamp(dp));},
+s7(lt){cam($('#s7bg'),lt,{s0:1.35,s1:1.08,d:12,y0:60,y1:0});driftClouds(s7cl,lt+20);
+  s7q.forEach((s,i)=>{const st=1+i*BEAT*2;const p=P(lt,st,st+.9,E.out5);s.style.transform=`translateY(${(1-p)*115}%)`;s.style.filter=`blur(${(1-p)*10}px)`;});
+  const w=P(lt,4.4,5.4);op($('#s7who'),w);$('#s7who').style.letterSpacing=`${lerp(.6,.2,w)}em`;
+  secAnim(sec7,lt,.3);},
+s8(lt){const T=[0,B(72)-B(70),B(74)-B(70),B(76)-B(70)];
+  const W=[['PERSEVERANCIA','Nunca se rinde.'],['VALENTÍA','Afronta el peligro y el frío.'],['INSPIRACIÓN','Un ejemplo para todos.'],['ORGULLO DE MÉXICO','']];
+  const ims=['#s8a','#s8b','#s8c','#s8d'].map($);let k=0;T.forEach((t,i)=>{if(lt>=t)k=i;});const since=lt-T[k];
+  ims.forEach((im,i)=>{show(im,i===k||(i===k-1&&since<.6));im.style.zIndex=i===k?2:1;});
+  const cur=ims[k];cur.style.clipPath=k?`inset(${(1-P(since,0,.55,E.inOut))*100}% 0 0 0)`:'none';cur.style.transform=`scale(${1.3-since*.03})`;
+  if(k>0){const prev=ims[k-1];prev.style.transform=`scale(${1.3-(lt-T[k-1])*.03}) translateY(${-P(since,0,.55,E.inOut)*20}%)`;}
+  const wd=$('#s8word');if(wd.dataset.k!==String(k)){wd.dataset.k=k;wd._sp=splitChars(wd,W[k][0]);$('#s8sub').textContent=W[k][1];}
+  wd._sp.forEach((s,i)=>{const p=P(since,.15+i*.025,.85+i*.025,E.out5);s.style.transform=`translateY(${(1-p)*115}%)`;});
+  wd.style.fontSize=k===3?'120px':'150px';
+  const sp=P(since,.6,1.2);op($('#s8sub'),sp);tf($('#s8sub'),`translateY(${(1-sp)*20}px)`);
+  secAnim(sec8,lt,.3);},
+s9(lt){cam($('#s9bg'),lt,{s0:1.3,s1:1.1,d:8});driftClouds(s9cl,lt+40);
+  s9t.forEach((s,i)=>{const p=P(lt,.6+i*.04,1.6+i*.04,E.out5);s.style.transform=`translateY(${(1-p)*115}%)`;});
+  rise(s9s,lt,2,.08,.8);op($('#s9c'),P(lt,3,4));},
+};
+
+// ---------- transitions ----------
+const cloudPool=[...Array(28)].map((_,i)=>{const im=document.createElement('img');im.src=`assets/clouds/c${i%8}.png`;$('#cloudfx').appendChild(im);
+  return {im,x:(rnd(i+1)*2-1),y:(rnd(i+50)*2-1)*.8,z0:.4+rnd(i+90)*1.0};});
+function renderFx(t){
+  let white=0;cloudPool.forEach(c=>c.im.style.opacity=0);show($('#zt'),false);$('#fx').innerHTML='';
+  for(const [type,T] of TRL){const [a,b]=WIN[type];if(t<T-a||t>T+b)continue;const p=(t-(T-a))/(a+b);
+    if(type==='clouds'){
+      cloudPool.forEach(c=>{const z=c.z0+1.25-p*1.6;if(z<=.05){c.im.style.opacity=0;return;}
+        const s=1/z,x=960+c.x*700*s,y=560+c.y*450*s,size=700*s;
+        c.im.style.width=c.im.style.height=size+'px';c.im.style.transform=`translate(${x-size/2}px,${y-size/2}px)`;
+        c.im.style.opacity=clamp((1.6-z)/.6)*clamp(z/.25)*.95;});
+      white=Math.max(white,Math.pow(Math.sin(clamp((t-(T-.45))/.9)*Math.PI),2)*.95);
+    } else if(type==='flare'){
+      const f=document.createElement('div');const x=lerp(-600,2400,E.inOut(p));
+      f.style.cssText=`position:absolute;left:${x-700}px;top:-300px;width:1400px;height:1680px;border-radius:50%;mix-blend-mode:screen;background:radial-gradient(closest-side,rgba(255,236,200,.95),rgba(255,190,120,.45) 45%,rgba(255,150,80,0));opacity:${Math.sin(p*Math.PI)}`;
+      $('#fx').appendChild(f);white=Math.max(white,Math.pow(Math.max(0,1-Math.abs(t-T)/.2),2)*.85);
+    } else if(type==='zoomtext'&&ZT){
+      show($('#zt'),true);
+      const appear=P(t,T-a,T-a+.6,E.out5);const fly=P(t,T-.6,T+.3,E.inExpo);
+      const s=lerp(lerp(.8,1,appear),30,fly);const [ox,oy]=ztOrigin;
+      const W=1920*s,H=1080*s,L=ox-ox*s,Tp=oy-oy*s;
+      const st=$('#ztstroke');st.style.width=W+'px';st.style.height=H+'px';st.style.transform=`translate(${L}px,${Tp}px)`;st.style.opacity=appear*(1-P(t,T-.15,T+.15));
+      const out=$('#s3');out.style.webkitMaskImage=`url(${ZT.mask})`;out.style.webkitMaskSize=`${W}px ${H}px`;
+      out.style.webkitMaskPosition=`${L}px ${Tp}px`;out.style.webkitMaskRepeat='no-repeat';
+      if(t>T+.12)out.style.visibility='hidden';
+    }
+  }
+  op($('#white'),white);
+}
+function sceneStyle(id,s,e,t){
+  const el=$('#'+id);const tin=trAt(s),tout=trAt(e);const wi=tin?WIN[tin]:[0,0],wo=tout?WIN[tout]:[0,0];
+  let vis=t>=s-wi[0]&&t<e+wo[1];let tfm='',z=1,filt='none';
+  if(tin&&t<s+wi[1]){const p=clamp((t-(s-wi[0]))/(wi[0]+wi[1]));
+    if(tin==='clouds'){if(t<s)vis=false;tfm=`scale(${lerp(1.35,1,E.out(clamp((t-s)/wi[1])))})`;}
+    if(tin==='push'){z=2;tfm=`perspective(1400px) translateY(${(1-E.inOut(p))*100}%) rotateX(${-(1-E.inOut(p))*10}deg)`;}
+    if(tin==='flare'){if(t<s)vis=false;tfm=`scale(${lerp(1.12,1,E.out(clamp((t-s)/wi[1])))})`;}
+    if(tin==='zoomtext'){z=0;tfm=`scale(${lerp(1.15,1,E.out(clamp((t-(s-.6))/(wi[1]+.6))))})`;}
+  }
+  if(tout&&t>e-wo[0]){const p=clamp((t-(e-wo[0]))/(wo[0]+wo[1]));
+    if(tout==='clouds'){if(t>=e)vis=false;tfm=`scale(${lerp(1,1.5,E.in(clamp((t-(e-wo[0]))/wo[0])))})`;filt=`brightness(${1+p})`;}
+    if(tout==='push'){tfm=`perspective(1400px) translateY(${-E.inOut(p)*30}%) rotateX(${E.inOut(p)*6}deg)`;filt=`brightness(${1-.6*p})`;}
+    if(tout==='flare'){if(t>=e)vis=false;}
+    if(tout==='zoomtext'){z=3;}
+  }
+  if(!(tout==='zoomtext'&&t>e-wo[0]))el.style.webkitMaskImage='none';
+  el.style.visibility=vis?'visible':'hidden';el.style.zIndex=z;el.style.filter=filt;
+  return {vis,tfm};
+}
+// ---------- website chrome ----------
+const NAVMAP=[0,1,1,2,3,4,4,5,5,0];
+function renderUI(t){let k=0;SC.forEach(([id,s],i)=>{if(t>=s)k=i;});
+  const nk=NAVMAP[k];menuItems.forEach((m,i)=>m.style.opacity=i===nk?1:.55);
+  const tg=menuItems[nk];const ln=$('#navline');ln.style.left=tg.offsetLeft+'px';ln.style.width=tg.offsetWidth+'px';
+  $('#idxn').textContent=String(k+1).padStart(2,'0')+' / 10';$('#idxb').style.width=(t/DURATION*100)+'%';
+  const ui=P(t,2.5,3.5)*(1-P(t,B(80)-.5,B(80)+.5));op($('#nav'),ui);op($('#idx'),ui);tf($('#nav'),`translateY(${(1-P(t,2.5,3.5))*-30}px)`);}
+const gc=$('#grain').getContext('2d');const gimg=gc.createImageData(480,270);
+function grain(t){let s=Math.floor(t*30)*9301+49297;for(let i=0;i<gimg.data.length;i+=4){s=(s*1103515245+12345)&0x7fffffff;const v=s>>23;
+  gimg.data[i]=gimg.data[i+1]=gimg.data[i+2]=v;gimg.data[i+3]=255;}gc.putImageData(gimg,0,0);}
+
+window.DURATION=DURATION;
+window.render=function(t){
+  for(const [id,s,e] of SC){const st=sceneStyle(id,s,e,t);if(!st.vis)continue;const el=$('#'+id);el.style.transform=st.tfm;R[id](t-s);}
+  renderFx(t);renderUI(t);grain(t);
+  op($('#black'),Math.max(1-P(t,0,.8),P(t,DURATION-1.5,DURATION)));
+};
+window.ready=document.fonts.load('700 100px Unb').then(()=>document.fonts.ready).then(()=>{ZT=buildZT('EVEREST');$('#ztstroke').src=ZT.stroke;})
+ .then(()=>Promise.all([...document.querySelectorAll('*')].map(d=>{const m=getComputedStyle(d).backgroundImage.match(/url\("?([^")]+)"?\)/);
+   return m?new Promise(r=>{const i=new Image();i.onload=i.onerror=r;i.src=m[1];}):0;})))
+ .then(()=>Promise.all([...document.images].map(i=>i.complete?0:new Promise(r=>{i.onload=i.onerror=r;}))));
+const q=new URLSearchParams(location.search);
+if(q.has('t'))window.ready.then(()=>render(parseFloat(q.get('t'))));
+else if(!q.has('render')){const t0=performance.now();window.ready.then(()=>{(function loop(){render(((performance.now()-t0)/1000)%DURATION);requestAnimationFrame(loop)})()});}
+</script>
+</body>
+</html>
