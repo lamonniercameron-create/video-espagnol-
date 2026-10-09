@@ -200,8 +200,8 @@ const show=(el,v)=>{el.style.visibility=v?'visible':'hidden'};
 const BEAT=60/155, BAR=4*BEAT, PH=0.38;
 const B=n=>PH+n*BAR;
 const SC=[['s0',0,B(6)],['s1',B(6),B(13)],['s2',B(13),B(19)],['s3',B(19),B(30)],['s4',B(30),B(38)],
-          ['s5',B(38),B(48)],['s6',B(48),B(62)],['s7',B(62),B(70)],['s8',B(70),B(80)],['s9',B(80),133]];
-const DURATION=133;
+          ['s5',B(38),B(48)],['s6',B(48),B(62)],['s7',B(62),B(70)],['s8',B(70),B(80)],['s9',B(80),145]];
+const DURATION=145;
 const TRL=[['clouds',B(6)],['push',B(13)],['flare',B(19)],['zoomtext',B(30)],['push',B(38)],['clouds',B(48)],['flare',B(62)],['push',B(70)],['clouds',B(80)]];
 const trAt=t=>{const f=TRL.find(x=>Math.abs(x[1]-t)<1e-6);return f?f[0]:null};
 const WIN={clouds:[1.1,0.9],push:[0.45,0.55],flare:[0.35,0.6],zoomtext:[1.4,0.35]};

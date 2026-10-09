@@ -6,7 +6,7 @@ import subprocess, sys, wave
 import numpy as np
 
 SR = 44100
-DUR = 133.0
+DUR = 145.0
 N = int(SR * DUR)
 music_path, out = sys.argv[1], sys.argv[2]
 raw = subprocess.run(['ffmpeg', '-loglevel', 'error', '-i', music_path, '-t', str(DUR), '-ac', '2', '-ar', str(SR),
@@ -70,6 +70,8 @@ for k in (B(25),):                         # whip to Orizaba
 
 t = np.arange(N) / SR
 fade = np.interp(t, [0, .02, DUR - 3, DUR], [0, 1, 1, 0])
+# duck the music under the spoken conclusion (last screen)
+fade *= np.interp(t, [0, B(80) + .8, B(80) + 2.5, DUR], [1, 1, .5, .5])
 mix *= fade[:, None]
 mix = np.tanh(mix * 1.05)
 mix /= np.abs(mix).max() / 0.95

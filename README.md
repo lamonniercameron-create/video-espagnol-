@@ -1,6 +1,6 @@
 # Viridiana Álvarez: exposé d'espagnol en motion design
 
-- 🎬 **La vidéo :** [`video/viridiana_alvarez.mp4`](video/viridiana_alvarez.mp4) (1920×1080, 2 min 13, style « site web 3D » cinématique)
+- 🎬 **La vidéo :** [`video/viridiana_alvarez.mp4`](video/viridiana_alvarez.mp4) (1920×1080, 2 min 25, style « site web 3D » cinématique)
 - 🗣️ **Le texte à dire à l'oral :** [`TEXTE_ORAL.md`](TEXTE_ORAL.md) (espagnol + traduction + vocabulaire)
 
 Vidéo d'origine : [Canal Once, « Conoce a Viridiana Álvarez, alpinista mexicana »](https://youtube.com/shorts/Ut4xmapOcGk)
