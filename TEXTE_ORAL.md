@@ -2,7 +2,7 @@
 
 **Document étudié :** « Conoce a Viridiana Álvarez, alpinista mexicana. Orgullo de México », Canal Once (Once Noticias), mai 2025.
 
-**Ma vidéo :** `video/viridiana_alvarez.mp4` (2 min 25). Je parle **pendant** que la vidéo passe.
+**Ma vidéo :** `video/viridiana_alvarez.mp4` (2 min 25, avec ta musique). Je parle **pendant** que la vidéo passe.
 
 ### Comment lire ce conducteur
 - ⏱️ **Le minutage** de chaque scène (début → fin).
