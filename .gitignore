@@ -1,0 +1,5 @@
+video/node_modules
+video/stills/
+video/.parts/
+*.wav
+video/silent.mp4

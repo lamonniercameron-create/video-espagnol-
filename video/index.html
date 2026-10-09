@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Viridiana Álvarez — motion design</title>
+<style>
+@font-face{font-family:Anton;src:url(fonts/anton-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:400;src:url(fonts/inter-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:600;src:url(fonts/inter-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:800;src:url(fonts/inter-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:Playfair;font-style:italic;font-weight:700;src:url(fonts/playfair-display-latin-700-italic.woff2) format("woff2")}
+:root{
+  --night:#0a1224; --night2:#13213f; --snow:#f5f2ea; --ice:#8cc3e6; --ice2:#cfe7f5;
+  --red:#e0313f; --green:#16915c; --gold:#f4b73a; --gold2:#ffdf8a; --ink:#0a1224;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#000}
+#stage{position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--night);
+  font-family:Inter,sans-serif;color:var(--snow)}
+.layer,.scene{position:absolute;inset:0}
+.scene{visibility:hidden;will-change:transform,opacity}
+.anton{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.01em;line-height:.95}
+.m{display:inline-block;overflow:hidden;vertical-align:bottom;padding:.2em .04em .06em;margin-top:-.2em}
+.w{display:inline-block;will-change:transform}
+.abs{position:absolute}
+.kicker{font-weight:600;letter-spacing:.35em;text-transform:uppercase;font-size:26px;color:var(--ice)}
+.chapter{position:absolute;top:56px;left:80px;display:flex;gap:18px;align-items:center;font-weight:600;
+  letter-spacing:.3em;font-size:22px;color:var(--ice);text-transform:uppercase}
+.chapter b{font-family:Anton;font-weight:400;letter-spacing:.02em;font-size:30px;color:var(--snow)}
+.chapter i{display:block;width:60px;height:3px;background:var(--red)}
+.photo{position:absolute;background-size:cover;background-position:center}
+.tag{display:inline-block;padding:10px 22px;border-radius:999px;font-weight:800;font-size:26px;letter-spacing:.04em}
+.card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:22px;
+  backdrop-filter:blur(8px)}
+#fx{position:absolute;inset:0;pointer-events:none;z-index:10}
+#snow{z-index:5}
+#black{z-index:20}
+.bar{position:absolute;top:-30%;height:160%;width:46%;transform-origin:center}
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- persistent background -->
+  <div class="layer" id="bg">
+    <div class="layer" id="bggrad" style="background:radial-gradient(120% 90% at 70% 10%,#20345f 0%,#0f1b36 45%,#070d1c 100%)"></div>
+    <svg class="layer" id="mtsFar" viewBox="0 0 1920 1080" preserveAspectRatio="none" style="overflow:visible"><path fill="#1a2b52" opacity=".75"/></svg>
+    <svg class="layer" id="mtsNear" viewBox="0 0 1920 1080" preserveAspectRatio="none" style="overflow:visible"><path fill="#0c162d"/></svg>
+  </div>
+
+  <!-- S1 INTRO -->
+  <section class="scene" id="s1">
+    <div class="abs kicker" id="s1k" style="left:0;right:0;top:300px;text-align:center"></div>
+    <div class="abs anton" id="s1title" style="left:0;right:0;top:310px;padding-top:40px;text-align:center;font-size:190px;color:var(--snow);white-space:nowrap">VIRIDIANA ÁLVAREZ</div>
+    <svg class="abs" id="s1car" width="260" height="130" viewBox="0 0 260 130" style="left:0;top:470px">
+      <g id="carbody">
+        <path d="M18 78 L30 46 Q36 34 52 34 L150 34 Q164 34 174 44 L200 70 L236 76 Q250 79 250 92 L250 100 L14 100 L14 86 Z" fill="#e0313f"/>
+        <path d="M58 44 L104 44 L104 70 L44 70 Z" fill="#cfe7f5"/><path d="M114 44 L150 44 Q158 44 164 50 L184 70 L114 70 Z" fill="#cfe7f5"/>
+        <rect x="14" y="84" width="236" height="6" fill="#a61d2a"/>
+        <rect x="232" y="80" width="18" height="8" rx="3" fill="#ffdf8a"/>
+        <rect x="40" y="18" width="120" height="10" rx="4" fill="#16915c"/>
+        <path d="M60 18 L62 8 L140 8 L142 18" fill="none" stroke="#16915c" stroke-width="5"/>
+      </g>
+      <g class="wheel" transform="translate(66 102)"><circle r="24" fill="#0a1224"/><circle r="11" fill="#8cc3e6"/><rect x="-2" y="-11" width="4" height="22" fill="#0a1224"/></g>
+      <g class="wheel" transform="translate(200 102)"><circle r="24" fill="#0a1224"/><circle r="11" fill="#8cc3e6"/><rect x="-2" y="-11" width="4" height="22" fill="#0a1224"/></g>
+    </svg>
+    <div id="s1dust"></div>
+    <div class="abs" id="s1line" style="left:50%;top:580px;height:6px;width:900px;margin-left:-450px;display:flex">
+      <i style="flex:1;background:var(--green)"></i><i style="flex:1;background:var(--snow)"></i><i style="flex:1;background:var(--red)"></i>
+    </div>
+    <div class="abs" id="s1sub" style="left:0;right:0;top:620px;text-align:center;font-size:46px;font-weight:600">La mujer que conquistó las montañas más altas del mundo</div>
+    <div class="abs" id="s1badge" style="left:0;right:0;top:740px;text-align:center">
+      <span class="tag" style="background:var(--snow);color:var(--ink)">Canal Once · Once Noticias · 2025</span>
+    </div>
+  </section>
+
+  <!-- S2 EL DOCUMENTO -->
+  <section class="scene" id="s2">
+    <div class="chapter"><b>01</b><i></i><span>El documento</span></div>
+    <div class="abs anton" id="s2title" style="left:80px;top:150px;font-size:150px">EL VÍDEO</div>
+    <div class="abs" id="s2list" style="left:84px;top:350px;width:880px;display:flex;flex-direction:column;gap:26px"></div>
+    <div class="abs" id="s2phone" style="left:1060px;top:150px;width:780px;height:470px;border-radius:30px;overflow:hidden;
+         box-shadow:0 40px 90px rgba(0,0,0,.55);border:6px solid var(--snow)">
+      <div class="photo" id="s2img1" style="inset:0;background-image:url(assets/clip_snow.jpg)"></div>
+      <div class="photo" id="s2img2" style="inset:0;background-image:url(assets/clip_summit.jpg)"></div>
+    </div>
+    <div class="abs" id="s2cap" style="left:1060px;top:650px;width:780px;font-size:26px;color:var(--ice2)">
+      <span class="tag" style="background:var(--red);color:#fff;font-size:20px;margin-right:14px">EN VIVO</span>Imágenes del reportaje original</div>
+  </section>
+
+  <!-- S3 QUIEN ES -->
+  <section class="scene" id="s3">
+    <div class="photo" id="s3img" style="left:760px;top:0;width:1160px;height:1080px;background-image:url(assets/clip_interview.jpg);background-position:62% 40%"></div>
+    <div class="layer" style="background:linear-gradient(90deg,#0a1224 0%,#0a1224 38%,rgba(10,18,36,.75) 55%,rgba(10,18,36,0) 80%)"></div>
+    <div class="chapter"><b>02</b><i></i><span>La protagonista</span></div>
+    <div class="abs anton" id="s3title" style="left:80px;top:150px;font-size:170px">¿QUIÉN ES?</div>
+    <div class="abs card" id="s3card" style="left:80px;top:380px;width:860px;padding:36px 44px"></div>
+  </section>
+
+  <!-- S4 INICIOS -->
+  <section class="scene" id="s4">
+    <div class="chapter"><b>03</b><i></i><span>Sus inicios</span></div>
+    <div class="abs anton" id="s4title" style="left:80px;top:140px;font-size:130px">PRIMERO, CORRER</div>
+    <svg class="abs" id="s4svg" width="1920" height="1080" viewBox="0 0 1920 1080" style="left:0;top:0">
+      <path id="s4mt" d="M1240 900 L1560 380 L1640 470 L1700 420 L1900 900 Z" fill="#1d3463"/>
+      <path id="s4snow" d="M1560 380 L1500 478 L1540 462 L1572 494 L1610 446 L1640 470 L1700 420 Z" fill="#f5f2ea" opacity=".95"/>
+      <path id="s4path" d="M120 900 C 380 900, 420 820, 560 800 S 820 720, 960 700 S 1180 640, 1300 760 S 1460 520, 1560 386"
+            fill="none" stroke="#8cc3e6" stroke-width="8" stroke-linecap="round" stroke-dasharray="4 22"/>
+      <path id="s4path2" d="M120 900 C 380 900, 420 820, 560 800 S 820 720, 960 700 S 1180 640, 1300 760 S 1460 520, 1560 386"
+            fill="none" stroke="#f4b73a" stroke-width="8" stroke-linecap="round"/>
+      <circle id="s4dot" r="18" fill="#e0313f" stroke="#f5f2ea" stroke-width="6"/>
+      <g id="s4flag" transform="translate(1560 386)"><rect x="-3" y="-90" width="6" height="90" fill="#f5f2ea"/>
+        <rect x="3" y="-90" width="26" height="46" fill="#16915c"/><rect x="29" y="-90" width="26" height="46" fill="#f5f2ea"/><rect x="55" y="-90" width="26" height="46" fill="#e0313f"/></g>
+    </svg>
+    <div id="s4labels"></div>
+  </section>
+
+  <!-- S5 EVEREST -->
+  <section class="scene" id="s5">
+    <div class="layer" style="background:linear-gradient(180deg,#0b1a3a 0%,#1f4a86 55%,#8cc3e6 100%)"></div>
+    <svg class="layer" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+      <path id="s5mt" d="M0 1080 L0 900 L380 760 L620 820 L960 300 L1090 420 L1180 380 L1480 760 L1920 840 L1920 1080 Z" fill="#0c162d"/>
+      <path id="s5snow" d="M960 300 L880 420 L930 400 L960 440 L1010 390 L1060 430 L1090 420 Z" fill="#f5f2ea"/>
+      <g id="s5flag" transform="translate(962 302)"><rect x="-3" y="-110" width="6" height="110" fill="#f5f2ea"/>
+        <rect x="3" y="-110" width="30" height="54" fill="#16915c"/><rect x="33" y="-110" width="30" height="54" fill="#f5f2ea"/><rect x="63" y="-110" width="30" height="54" fill="#e0313f"/></g>
+    </svg>
+    <div class="chapter"><b>04</b><i></i><span>La cima del mundo</span></div>
+    <div class="abs kicker" id="s5k" style="left:80px;top:170px;font-size:40px;letter-spacing:.6em;color:var(--snow)">EVEREST</div>
+    <div class="abs anton" id="s5num" style="left:70px;top:220px;font-size:260px;color:var(--snow);white-space:nowrap">0 m</div>
+    <div class="abs" id="s5date" style="left:84px;top:520px;font-size:54px;font-weight:800"></div>
+    <div class="abs" id="s5tag" style="left:84px;top:610px"><span class="tag" style="background:var(--red);color:#fff;font-size:30px;padding:14px 28px">Primera mujer de Aguascalientes en la cima</span></div>
+  </section>
+
+  <!-- S6 PRIMER RECORD -->
+  <section class="scene" id="s6">
+    <div class="chapter"><b>05</b><i></i><span>Primer récord</span></div>
+    <div class="abs anton" id="s6title" style="left:80px;top:140px;font-size:120px">TRES GIGANTES</div>
+    <div id="s6peaks"></div>
+    <div class="abs" id="s6badge" style="left:1250px;top:250px;width:560px;height:560px">
+      <svg width="560" height="560" viewBox="0 0 560 560" style="position:absolute;inset:0">
+        <g id="s6rays" transform="translate(280 280)"></g>
+        <circle cx="280" cy="280" r="190" fill="#f4b73a"/><circle cx="280" cy="280" r="170" fill="none" stroke="#0a1224" stroke-width="4" stroke-dasharray="6 10"/>
+      </svg>
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ink);text-align:center">
+        <div style="font-weight:800;letter-spacing:.3em;font-size:22px">GUINNESS WORLD</div>
+        <div class="anton" style="font-size:120px">RÉCORD</div>
+        <div style="font-weight:800;font-size:44px">2020</div>
+      </div>
+    </div>
+    <div class="abs" id="s6cap" style="left:1150px;top:850px;width:760px;text-align:center;font-size:32px;font-weight:600;color:var(--gold2)">El ascenso más rápido a las tres montañas más altas del mundo</div>
+  </section>
+
+  <!-- S7 GRAN RECORD -->
+  <section class="scene" id="s7">
+    <div class="layer" id="s7A">
+      <div class="chapter"><b>06</b><i></i><span>Un récord histórico</span></div>
+      <div class="abs anton" id="s7num" style="left:70px;top:150px;font-size:430px;color:var(--gold)">14</div>
+      <div class="abs anton" id="s7lbl" style="left:90px;top:620px;font-size:90px">OCHOMILES</div>
+      <div class="abs" id="s7sub" style="left:94px;top:730px;font-size:32px;color:var(--ice2);font-weight:600">montañas de más de 8 000 metros</div>
+      <div class="abs" id="s7grid" style="left:780px;top:170px;width:1060px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px 22px"></div>
+    </div>
+    <div class="layer" id="s7B">
+      <div class="abs anton" id="s7plus" style="left:70px;top:150px;font-size:430px;color:var(--ice)">+7</div>
+      <div class="abs anton" id="s7lbl2" style="left:90px;top:620px;font-size:90px">CUMBRES</div>
+      <div class="abs" id="s7sub2" style="left:94px;top:730px;font-size:32px;color:var(--ice2);font-weight:600">la más alta de cada continente</div>
+      <div class="abs" id="s7conts" style="left:780px;top:190px;width:1060px;display:flex;flex-wrap:wrap;gap:22px"></div>
+    </div>
+    <div class="layer" id="s7C">
+      <div class="photo" id="s7img" style="inset:0;background-image:url(assets/clip_summit.jpg);background-position:50% 30%"></div>
+      <div class="layer" style="background:radial-gradient(circle at 50% 50%,rgba(10,18,36,.55),rgba(10,18,36,.92))"></div>
+      <svg class="layer" viewBox="0 0 1920 1080"><g id="s7rays" transform="translate(960 470)"></g></svg>
+      <div class="abs anton" id="s7big" style="left:0;right:0;top:300px;text-align:center;font-size:170px;line-height:1">PRIMERA MUJER<br><span style="color:var(--gold)">DE LA HISTORIA</span></div>
+      <div class="abs" id="s7date" style="left:0;right:0;top:720px;text-align:center">
+        <span class="tag" style="background:var(--gold);color:var(--ink);font-size:34px;padding:16px 34px">19 de mayo de 2025 · 2.º Récord Guinness</span></div>
+      <div class="abs" id="s7expl" style="left:0;right:0;top:830px;text-align:center;font-size:32px;font-weight:600;color:var(--ice2)">14 ochomiles + 7 cumbres</div>
+    </div>
+  </section>
+
+  <!-- S8 CITA -->
+  <section class="scene" id="s8">
+    <div class="photo" id="s8img" style="inset:-40px;background-image:url(assets/clip_interview2.jpg);filter:blur(16px) brightness(.45)"></div>
+    <div class="chapter"><b>07</b><i></i><span>Su mensaje</span></div>
+    <div class="abs" id="s8q" style="left:0;right:0;top:170px;text-align:center;font-family:Playfair;font-style:italic;font-weight:700;font-size:360px;color:var(--gold);line-height:1">“</div>
+    <div class="abs" id="s8text" style="left:0;right:0;top:440px;text-align:center;font-family:Playfair;font-style:italic;font-weight:700;font-size:140px;white-space:nowrap"></div>
+    <svg class="abs" id="s8under" width="1100" height="60" viewBox="0 0 1100 60" style="left:410px;top:610px">
+      <path d="M10 40 C 250 10, 520 18, 760 28 S 1000 40, 1090 20" fill="none" stroke="#e0313f" stroke-width="14" stroke-linecap="round"/></svg>
+    <div class="abs" id="s8who" style="left:0;right:0;top:720px;text-align:center;font-size:40px;font-weight:600;color:var(--ice2)">— Viridiana Álvarez</div>
+  </section>
+
+  <!-- S9 OPINION -->
+  <section class="scene" id="s9">
+    <div class="chapter"><b>08</b><i></i><span>Mi opinión</span></div>
+    <div class="abs anton" id="s9title" style="left:80px;top:140px;font-size:130px">UN EJEMPLO</div>
+    <div class="abs" id="s9cards" style="left:80px;top:360px;width:1760px;display:flex;gap:40px;perspective:1400px"></div>
+    <div class="abs" id="s9banner" style="left:0;right:0;top:790px;height:150px;overflow:hidden">
+      <div id="s9stripes" style="position:absolute;inset:0;display:flex"><i style="flex:1;background:var(--green)"></i><i style="flex:1;background:var(--snow)"></i><i style="flex:1;background:var(--red)"></i></div>
+      <div class="anton" id="s9orgullo" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:100px;color:var(--ink);letter-spacing:.04em">ORGULLO DE MÉXICO</div>
+    </div>
+  </section>
+
+  <!-- S10 GRACIAS -->
+  <section class="scene" id="s10">
+    <div class="abs anton" id="s10t" style="left:0;right:0;top:330px;text-align:center;font-size:220px">¡MUCHAS GRACIAS!</div>
+    <div class="abs" id="s10s" style="left:0;right:0;top:600px;text-align:center;font-size:52px;font-weight:600;color:var(--ice2)">¿Tenéis alguna pregunta?</div>
+  </section>
+
+  <canvas id="snow" class="layer" width="1920" height="1080"></canvas>
+  <div id="fx"></div>
+  <div class="layer" id="black" style="background:#000;opacity:0"></div>
+</div>
+
+<script>
+// ---------- helpers ----------
+const $ = s => document.querySelector(s);
+const clamp = (x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const E = {
+  lin:x=>x,
+  out:x=>1-Math.pow(1-x,3),
+  out5:x=>1-Math.pow(1-x,5),
+  inOut:x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2,
+  in:x=>x*x*x,
+  back:x=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)},
+  elastic:x=>x===0?0:x===1?1:Math.pow(2,-10*x)*Math.sin((x*10-.75)*(2*Math.PI)/3)+1,
+};
+const P = (t,a,b,e=E.out)=>e(clamp((t-a)/(b-a)));
+const lerp=(a,b,p)=>a+(b-a)*p;
+function rnd(i){const x=Math.sin(i*127.1+311.7)*43758.5453;return x-Math.floor(x)}
+
+function splitWords(el,txt){
+  txt = txt ?? el.textContent; el.innerHTML='';
+  return txt.split(' ').map((w,i,arr)=>{
+    const m=document.createElement('span');m.className='m';
+    const s=document.createElement('span');s.className='w';s.textContent=w;
+    m.appendChild(s);el.appendChild(m);
+    if(i<arr.length-1) el.appendChild(document.createTextNode(' '));
+    return s;
+  });
+}
+function splitChars(el,txt){
+  txt = txt ?? el.textContent; el.innerHTML='';
+  return [...txt].map(c=>{
+    const m=document.createElement('span');m.className='m';
+    const s=document.createElement('span');s.className='w';s.textContent=c===' '?' ':c;
+    m.appendChild(s);el.appendChild(m);return s;
+  });
+}
+// words rising from below a mask (the signature "text that lifts up")
+function rise(spans,t,start,stagger=.06,dur=.7,ease=E.out5){
+  spans.forEach((s,i)=>{
+    const p=P(t,start+i*stagger,start+i*stagger+dur,ease);
+    s.style.transform=`translateY(${(1-p)*115}%) rotate(${(1-p)*8}deg)`;
+  });
+}
+function riseOut(spans,t,start,stagger=.03,dur=.45){
+  if(t<start) return;
+  spans.forEach((s,i)=>{
+    const p=P(t,start+i*stagger,start+i*stagger+dur,E.in);
+    s.style.transform=`translateY(${-p*115}%)`;
+  });
+}
+const show=(el,o)=>{el.style.opacity=o};
+const tf=(el,s)=>{el.style.transform=s};
+
+// ---------- background mountains ----------
+function ridge(seed,base,amp,n){
+  let d=`M-100 1080 L-100 ${base}`;
+  for(let i=0;i<=n;i++){
+    const x=-100+i*2700/n, y=base-amp*(.35+.65*rnd(seed+i))*(i%2?1:.45);
+    d+=` L${x.toFixed(0)} ${y.toFixed(0)}`;
+  }
+  return d+' L2600 1080 Z';
+}
+$('#mtsFar path').setAttribute('d',ridge(10,860,330,20));
+$('#mtsNear path').setAttribute('d',ridge(50,960,230,14));
+
+// ---------- snow ----------
+const sc=$('#snow').getContext('2d');
+const FL=[...Array(140)].map((_,i)=>({x:rnd(i)*1920,y:rnd(i+500)*1080,r:1+rnd(i+900)*3.2,v:30+rnd(i+77)*70,a:.25+rnd(i+33)*.55,ph:rnd(i+3)*6.28}));
+function drawSnow(t,amount){
+  sc.clearRect(0,0,1920,1080); if(amount<=0) return;
+  FL.forEach(f=>{
+    const y=(f.y+t*f.v)%1100-10, x=(f.x+Math.sin(t*.7+f.ph)*28+t*12)%1940-10;
+    sc.globalAlpha=f.a*amount; sc.beginPath(); sc.arc(x,y,f.r,0,6.283); sc.fillStyle='#fff'; sc.fill();
+  });
+}
+
+// ---------- timeline ----------
+const SC=[ // id, start, end
+  ['s1',0,10],['s2',10,21],['s3',21,31],['s4',31,47],['s5',47,60],
+  ['s6',60,75],['s7',75,97],['s8',97,109],['s9',109,125],['s10',125,132]];
+const DURATION=132;
+// transition type at each boundary (start of scene i)
+const TR={10:'bars',21:'iris',31:'push',47:'zoom',60:'flash',75:'split',97:'barsGold',109:'iris2',125:'zoom'};
+const TW=.55; // half width of transition window
+
+// ---------- build scene content ----------
+// S1
+const s1k=splitChars($('#s1k'),'EXPOSICIÓN DE ESPAÑOL');
+const s1sub=splitWords($('#s1sub'));
+const dust=[...Array(14)].map((_,i)=>{const d=document.createElement('div');
+  d.style.cssText='position:absolute;border-radius:50%;background:#cfe7f5';$('#s1dust').appendChild(d);return d;});
+// S2
+const s2t=splitChars($('#s2title'));
+const S2ITEMS=[['Tipo','un reportaje de televisión'],['Cadena','Canal Once (México)'],['Fecha','mayo de 2025'],['Duración','2 minutos 10']];
+const s2rows=S2ITEMS.map(([k,v])=>{
+  const r=document.createElement('div');r.style.cssText='display:flex;align-items:center;gap:24px;font-size:40px';
+  r.innerHTML=`<span style="width:16px;height:16px;background:var(--red);transform:rotate(45deg);flex:none"></span><span style="color:var(--ice);font-weight:600;width:230px">${k}</span><span style="font-weight:800"></span>`;
+  $('#s2list').appendChild(r); return {r,k:r.children[1],v:splitWords(r.children[2],v)};
+});
+// S3
+const s3t=splitChars($('#s3title'));
+const S3ROWS=[['Nombre','Viridiana Álvarez Chávez'],['Nacimiento','15 de mayo de 1983'],['Lugar','Aguascalientes, México'],['Profesión','alpinista, conferencista y empresaria']];
+const s3rows=S3ROWS.map(([k,v],i)=>{
+  const r=document.createElement('div');r.style.cssText=`padding:18px 0;${i?'border-top:1px solid rgba(255,255,255,.14)':''}`;
+  r.innerHTML=`<div style="font-size:22px;letter-spacing:.25em;text-transform:uppercase;color:var(--ice);font-weight:600">${k}</div><div style="font-size:42px;font-weight:800;margin-top:6px"></div>`;
+  $('#s3card').appendChild(r); return {r,v:splitWords(r.children[1],v)};
+});
+// S4
+const s4t=splitWords($('#s4title'));
+const s4path=$('#s4path2'), s4len=s4path.getTotalLength();
+s4path.style.strokeDasharray=s4len;
+const S4M=[ // fraction along path, label, sub, time
+  [.0,'10 km','primera carrera',1.6],[.30,'21 km','media maratón',4.2],[.55,'42 km','maratón',6.8],[1,'2014','Pico de Orizaba · 5 636 m',9.8]];
+const s4labels=S4M.map(([f,a,b])=>{
+  const pt=s4path.getPointAtLength(f*s4len);
+  const d=document.createElement('div');d.style.cssText=`position:absolute;left:${pt.x}px;top:${pt.y}px;transform-origin:0 100%`;
+  const last=f===1;
+  d.innerHTML=`<div style="position:absolute;left:${last?-560:-40}px;bottom:${last?150:40}px;white-space:nowrap">
+     <div class="anton" style="font-size:${last?110:84}px;color:${last?'var(--gold)':'var(--snow)'}">${a}</div>
+     <div style="font-size:30px;font-weight:600;color:var(--ice2)">${b}</div></div>`;
+  $('#s4labels').appendChild(d);return d;
+});
+// S5
+const s5k=splitChars($('#s5k'));
+const s5d=splitWords($('#s5date'),'16 de mayo de 2017');
+// S6
+const s6t=splitWords($('#s6title'));
+const PEAKS=[['Everest','8 848 m','2017',1],['K2','8 611 m','2018',.973],['Kangchenjunga','8 586 m','2019',.97]];
+const s6p=PEAKS.map(([n,h,y,k],i)=>{
+  const d=document.createElement('div');const H=430*k, x=110+i*330;
+  d.style.cssText=`position:absolute;left:${x}px;top:${960-H}px;width:280px;height:${H}px;transform-origin:50% 100%`;
+  d.innerHTML=`<svg width="280" height="${H}" viewBox="0 0 280 ${H}" style="position:absolute;inset:0"><path d="M0 ${H} L140 0 L280 ${H} Z" fill="${['#2a4f8f','#21437c','#1b3868'][i]}"/><path d="M140 0 L100 ${H*.22} L122 ${H*.19} L140 ${H*.25} L162 ${H*.18} L180 ${H*.22} Z" fill="#f5f2ea"/></svg>
+    <div style="position:absolute;left:0;right:0;top:${H*.45}px;text-align:center"><div class="anton" style="font-size:52px">${y}</div></div>
+    <div style="position:absolute;left:-20px;right:-20px;bottom:${H+20}px;text-align:center"><div style="font-weight:800;font-size:34px">${n}</div><div style="font-size:26px;color:var(--ice2)">${h}</div></div>`;
+  $('#s6peaks').appendChild(d);return d;
+});
+function rays(g,n,len,col,w){for(let i=0;i<n;i++){const a=i*360/n;const r=document.createElementNS('http://www.w3.org/2000/svg','rect');
+  r.setAttribute('x',-w/2);r.setAttribute('y',-len);r.setAttribute('width',w);r.setAttribute('height',len-150);r.setAttribute('fill',col);
+  r.setAttribute('transform',`rotate(${a})`);g.appendChild(r);}}
+rays($('#s6rays'),24,275,'#ffdf8a',14);
+// S7
+const OCHO=['Everest','K2','Kangchenjunga','Lhotse','Makalu','Cho Oyu','Dhaulagiri','Manaslu','Nanga Parbat','Annapurna','Gasherbrum I','Broad Peak','Gasherbrum II','Shisha Pangma'];
+const s7tiles=OCHO.map((n,i)=>{const d=document.createElement('div');
+  d.style.cssText='display:flex;align-items:center;gap:18px;padding:14px 22px;border-radius:14px;background:rgba(244,183,58,.12);border:2px solid rgba(244,183,58,.55);font-size:30px;font-weight:800';
+  d.innerHTML=`<span class="anton" style="color:var(--gold);font-size:30px;width:44px">${String(i+1).padStart(2,'0')}</span>${n}`;
+  $('#s7grid').appendChild(d);return d;});
+const CONT=['Asia','África','Europa','América del Norte','América del Sur','Antártida','Oceanía'];
+const s7c=CONT.map((n,i)=>{const d=document.createElement('div');
+  d.style.cssText='padding:26px 38px;border-radius:999px;background:var(--ice);color:var(--ink);font-size:44px;font-weight:800';
+  d.textContent=n;$('#s7conts').appendChild(d);return d;});
+rays($('#s7rays'),32,1400,'rgba(244,183,58,.16)',60);
+// S8
+const s8c=splitChars($('#s8text'),'Los sueños se cumplen');
+// S9
+const s9t=splitWords($('#s9title'));
+const VAL=[['PERSEVERANCIA','Nunca se rinde.','var(--gold)'],['VALENTÍA','Afronta el peligro y el frío.','var(--ice)'],['INSPIRACIÓN','Un modelo para las mujeres.','var(--red)']];
+const s9cards=VAL.map(([a,b,c])=>{const d=document.createElement('div');
+  d.style.cssText=`flex:1;height:340px;border-radius:26px;padding:44px;background:rgba(255,255,255,.06);border:2px solid ${c};display:flex;flex-direction:column;justify-content:flex-end;transform-origin:50% 50%;backface-visibility:hidden`;
+  d.innerHTML=`<div style="width:70px;height:8px;background:${c};margin-bottom:auto"></div><div class="anton" style="font-size:78px;color:${c}">${a}</div><div style="font-size:34px;font-weight:600;margin-top:12px">${b}</div>`;
+  $('#s9cards').appendChild(d);return d;});
+// S10
+const s10c=splitChars($('#s10t'));
+const s10s=splitWords($('#s10s'));
+
+// ---------- scene renderers (lt = local time) ----------
+const R={
+s1(lt){
+  rise(s1k,lt,.3,.03,.6);
+  const carP=P(lt,1.0,3.4,E.inOut), cx=lerp(-300,2100,carP);
+  tf($('#s1car'),`translate(${cx}px,${Math.sin(lt*30)*2}px) scale(1.5)`);
+  document.querySelectorAll('#s1car .wheel').forEach((w,i)=>w.setAttribute('transform',`translate(${i?200:66} 102) rotate(${carP*1440})`));
+  const reveal=clamp((cx+130)/1920); // title revealed in the car's wake
+  $('#s1title').style.clipPath=`inset(0 ${(1-reveal)*100}% 0 0)`;
+  tf($('#s1title'),`translateY(${(1-P(lt,1,3.6))*30}px)`);
+  dust.forEach((d,i)=>{const birth=1.0+i*.17, age=lt-birth;
+    if(age<0||age>1.2){d.style.opacity=0;return}
+    const bx=lerp(-300,2100,P(birth,1.0,3.4,E.inOut))+20, s=20+age*60;
+    d.style.cssText+=`;left:${bx-s/2-age*40}px;top:${560-s/2-age*30}px;width:${s}px;height:${s}px;opacity:${(1-age/1.2)*.5}`;});
+  $('#s1line').style.transform=`scaleX(${P(lt,3.4,4.4,E.inOut)})`;
+  rise(s1sub,lt,3.6,.07,.7);
+  const b=P(lt,5.6,6.4,E.back); tf($('#s1badge'),`scale(${b})`); show($('#s1badge'),clamp(b));
+  tf($('#s1'),`scale(${1+lt*.006})`);
+},
+s2(lt){
+  rise(s2t,lt,.3,.05,.6);
+  s2rows.forEach((o,i)=>{const st=1.6+i*1.6;const p=P(lt,st,st+.6);
+    o.r.style.opacity=p; tf(o.r,`translateX(${(1-p)*-60}px)`); rise(o.v,lt,st+.15,.06,.6);});
+  const ph=P(lt,.5,1.6,E.back); tf($('#s2phone'),`translateX(${(1-ph)*700}px) rotate(${lerp(10,-2,ph)}deg)`);
+  tf($('#s2img1'),`scale(${1.05+lt*.02}) translateX(${-lt*6}px)`);
+  const x=P(lt,5.5,6.3,E.inOut); $('#s2img2').style.clipPath=`circle(${x*120}% at 50% 50%)`;
+  tf($('#s2img2'),`scale(${1.15-(lt-5.5)*.012})`);
+  const c=P(lt,1.6,2.2); show($('#s2cap'),c); tf($('#s2cap'),`translateY(${(1-c)*20}px)`);
+},
+s3(lt){
+  tf($('#s3img'),`scale(${1.12-lt*.006}) translateX(${lt*-4}px)`);
+  rise(s3t,lt,.25,.05,.7,E.back);
+  const c=P(lt,.9,1.7,E.out5); tf($('#s3card'),`translateY(${(1-c)*120}px)`); show($('#s3card'),c);
+  s3rows.forEach((o,i)=>{const st=1.4+i*1.5; o.r.style.opacity=P(lt,st,st+.3); rise(o.v,lt,st+.1,.07,.65);});
+},
+s4(lt){
+  rise(s4t,lt,.2,.1,.7);
+  const prog=[[0,0],[1.2,0],[4.2,.30],[6.8,.55],[9.8,1]];
+  let f=0; for(let i=1;i<prog.length;i++){const [t0,f0]=prog[i-1],[t1,f1]=prog[i]; if(lt>=t0) f=lerp(f0,f1,P(lt,t0,t1-.4,E.inOut));}
+  s4path.style.strokeDashoffset=s4len*(1-f);
+  const pt=s4path.getPointAtLength(f*s4len); $('#s4dot').setAttribute('cx',pt.x); $('#s4dot').setAttribute('cy',pt.y);
+  const m=P(lt,.4,1.6,E.out5); tf($('#s4mt'),`translateY(${(1-m)*500}px)`); tf($('#s4snow'),`translateY(${(1-m)*500}px)`);
+  const fl=P(lt,9.6,10.4,E.back); $('#s4flag').setAttribute('transform',`translate(1560 386) scale(${fl})`);
+  S4M.forEach((d,i)=>{const p=P(lt,d[3],d[3]+.6,E.back); s4labels[i].style.transform=`scale(${p})`; s4labels[i].style.opacity=clamp(p);});
+},
+s5(lt){
+  const m=P(lt,0,1.6,E.out5); tf($('#s5mt'),`translateY(${(1-m)*700}px)`); tf($('#s5snow'),`translateY(${(1-m)*700}px)`);
+  const fl=P(lt,4.2,5,E.back); $('#s5flag').setAttribute('transform',`translate(962 ${302+(1-m)*700}) scale(${fl})`);
+  rise(s5k,lt,.4,.05,.6);
+  const n=Math.round(8848*P(lt,.8,4,E.out)); $('#s5num').textContent=String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' ')+' m';
+  tf($('#s5num'),`scale(${1+ (lt>4&&lt<4.4? Math.sin((lt-4)/.4*Math.PI)*.04:0)})`); $('#s5num').style.transformOrigin='0 50%';
+  rise(s5d,lt,4.2,.08,.7);
+  const tg=P(lt,5.6,6.3,E.back); tf($('#s5tag'),`scale(${tg}) rotate(${(1-tg)*-6}deg)`); show($('#s5tag'),clamp(tg)); $('#s5tag').style.transformOrigin='0 50%';
+  tf($('#s5'),`scale(${1.04-lt*.003})`);
+},
+s6(lt){
+  rise(s6t,lt,.2,.1,.7);
+  s6p.forEach((d,i)=>{const st=.8+i*1.6; const p=P(lt,st,st+.9,E.back); d.style.transform=`scaleY(${p})`; d.style.opacity=clamp(p*3);});
+  const b=P(lt,6.6,7.3,E.out5); const bb=$('#s6badge');
+  bb.style.transform=`scale(${lerp(2.6,1,b)}) rotate(${lerp(-25,-6,b)+ (lt>7.3?Math.sin(lt)*1.5:0)}deg)`; bb.style.opacity=clamp(b*2);
+  $('#s6rays').setAttribute('transform',`translate(280 280) rotate(${lt*12}) scale(${P(lt,7.1,7.8,E.back)})`);
+  const c=P(lt,8,8.7); show($('#s6cap'),c); tf($('#s6cap'),`translateY(${(1-c)*30}px)`);
+  // camera nudge on impact
+  const imp=lt>7.25&&lt<7.65?Math.sin((lt-7.25)*80)*(7.65-lt)*30:0; tf($('#s6'),`translate(${imp}px,${-imp*.6}px)`);
+},
+s7(lt){
+  // phase A 0-9: 14 ochomiles
+  const A=$('#s7A'),B=$('#s7B'),C=$('#s7C');
+  const aOut=P(lt,8.6,9.3,E.inOut);
+  show(A,1-aOut); tf(A,`translateY(${-aOut*120}px)`);
+  const k=Math.max(1,Math.min(14,Math.floor(lerp(0,14.99,P(lt,.5,7.2,E.lin)))));
+  $('#s7num').textContent=String(k);
+  tf($('#s7num'),`scale(${1+ .06*Math.max(0,1-((lt*1e3)%(6700/14))/180)})`); $('#s7num').style.transformOrigin='0 80%';
+  const l=P(lt,.3,1); show($('#s7lbl'),l); tf($('#s7lbl'),`translateY(${(1-l)*40}px)`); show($('#s7sub'),P(lt,.8,1.5));
+  s7tiles.forEach((d,i)=>{const st=.5+i*(6.7/14); const p=P(lt,st,st+.45,E.back); d.style.opacity=clamp(p); d.style.transform=`translateY(${(1-p)*40}px) scale(${.8+.2*p})`;});
+  // phase B 9-15: +7 cumbres
+  const bIn=P(lt,9,9.8,E.out5), bOut=P(lt,14.6,15.2,E.in);
+  show(B,bIn*(1-bOut)); tf(B,`translateY(${(1-bIn)*140}px) scale(${1+bOut*.3})`);
+  s7c.forEach((d,i)=>{const st=9.8+i*.55; const p=P(lt,st,st+.5,E.back); d.style.opacity=clamp(p); d.style.transform=`scale(${p}) rotate(${(1-p)*(i%2?8:-8)}deg)`;});
+  // phase C 15-22: slam
+  const cIn=P(lt,15,15.25,E.lin); show(C,cIn);
+  tf($('#s7img'),`scale(${1.25-(lt-15)*.015})`);
+  const slam=P(lt,15.1,15.5,E.in);
+  tf($('#s7big'),`scale(${lerp(3.2,1,slam)})`); show($('#s7big'),clamp(slam*1.5));
+  const sh=lt>15.5&&lt<16.1?(16.1-lt)*40:0;
+  tf(C,`translate(${Math.sin(lt*95)*sh}px,${Math.cos(lt*120)*sh}px)`);
+  $('#s7rays').setAttribute('transform',`translate(960 470) rotate(${lt*6}) scale(${P(lt,15.4,16.4,E.out)})`);
+  const d=P(lt,16.8,17.5,E.back); tf($('#s7date'),`scale(${d})`); show($('#s7date'),clamp(d));
+  const e=P(lt,18,18.7); show($('#s7expl'),e); tf($('#s7expl'),`translateY(${(1-e)*24}px)`);
+},
+s8(lt){
+  tf($('#s8img'),`scale(${1.05+lt*.008})`);
+  const q=P(lt,.2,.9,E.back); tf($('#s8q'),`scale(${q}) rotate(${(1-q)*-30}deg)`); show($('#s8q'),clamp(q));
+  // typewriter
+  const n=Math.floor(P(lt,1.2,4.4,E.lin)*s8c.length);
+  s8c.forEach((s,i)=>{const p=P(lt,1.2+i*(3.2/s8c.length),1.2+i*(3.2/s8c.length)+.25,E.out); s.style.transform=`translateY(${(1-p)*100}%)`; });
+  const u=$('#s8under path'); const L=1120; u.style.strokeDasharray=L; u.style.strokeDashoffset=L*(1-P(lt,4.6,5.6,E.inOut));
+  const w=P(lt,6,6.8); show($('#s8who'),w); tf($('#s8who'),`translateY(${(1-w)*24}px)`);
+},
+s9(lt){
+  rise(s9t,lt,.2,.12,.7);
+  s9cards.forEach((d,i)=>{const st=1.2+i*2.6; const p=P(lt,st,st+.9,E.back);
+    d.style.transform=`rotateY(${(1-p)*-95}deg) translateY(${(1-p)*40}px)`; d.style.opacity=clamp(p*3);});
+  const st=P(lt,9.6,10.6,E.inOut); $('#s9stripes').style.clipPath=`inset(0 ${(1-st)*100}% 0 0)`;
+  const o=P(lt,10.4,11.1,E.back); tf($('#s9orgullo'),`scale(${o})`); show($('#s9orgullo'),clamp(o));
+},
+s10(lt){
+  s10c.forEach((s,i)=>{const p=P(lt,.3+i*.04,.3+i*.04+.8,E.elastic); s.style.transform=`translateY(${(1-p)*120}%)`;});
+  rise(s10s,lt,1.6,.1,.7);
+  tf($('#s10'),`scale(${1+lt*.01})`);
+},
+};
+
+// ---------- transitions ----------
+const fx=$('#fx');
+function renderFx(t){
+  fx.innerHTML='';
+  for(const [T,type] of Object.entries(TR)){
+    const p=(t-(T-TW))/(2*TW); if(p<=0||p>=1) continue;
+    if(type==='bars'||type==='barsGold'){
+      const cols=type==='bars'?['#e0313f','#f5f2ea','#16915c']:['#f4b73a','#ffdf8a','#0a1224'];
+      cols.forEach((c,i)=>{const b=document.createElement('div');b.className='bar';
+        const q=E.inOut(clamp(p*1.25-i*.12));
+        b.style.cssText+=`;background:${c};left:${lerp(-60,130,q)}%;width:${60}%;transform:skewX(-18deg)`;
+        fx.appendChild(b);});
+    } else if(type.startsWith('iris')){
+      const r=E.inOut(p)*75*22; const at=type==='iris2'?'960px 540px':'288px 918px';
+      const b=document.createElement('div');const [cx,cy]=at.split(' ').map(parseFloat);
+      b.style.cssText=`position:absolute;left:${cx-r}px;top:${cy-r}px;width:${2*r}px;height:${2*r}px;border-radius:50%;border:${18*(1-p)+4}px solid ${type==='iris2'?'#e0313f':'#8cc3e6'};opacity:${Math.sin(p*Math.PI)}`;
+      fx.appendChild(b);
+    } else if(type==='flash'){
+      const b=document.createElement('div');b.style.cssText=`position:absolute;inset:0;background:#fff;opacity:${Math.sin(p*Math.PI)}`;fx.appendChild(b);
+    } else if(type==='split'){
+      const q=Math.sin(p*Math.PI); ['top','bottom'].forEach((s,i)=>{const b=document.createElement('div');
+        b.style.cssText=`position:absolute;left:0;right:0;${s}:0;height:${q*50.5}%;background:${i?'#f4b73a':'#0a1224'}`;fx.appendChild(b);});
+    }
+  }
+}
+function sceneStyle(id,start,end,t){
+  const el=$('#'+id); let vis=t>=start-TW&&t<end+TW;
+  const tin=TR[start], tout=TR[end];
+  let tfm='', clip='none', op=1, filt='none', z=1;
+  // incoming
+  if(tin&&t<start+TW){const p=clamp((t-(start-TW))/(2*TW));
+    if(tin.startsWith('bars')||tin==='flash'||tin==='split'){ if(t<start) vis=false; }
+    else if(tin.startsWith('iris')){ clip=`circle(${E.inOut(p)*75}% at ${tin==='iris2'?'50% 50%':'15% 85%'})`; z=2; }
+    else if(tin==='push'){ tfm=`translateX(${(1-E.inOut(p))*100}%)`; z=2; }
+    else if(tin==='zoom'){ op=E.out(p); tfm=`scale(${lerp(.7,1,E.out(p))})`; z=2; }
+  }
+  // outgoing
+  if(tout&&t>end-TW){const p=clamp((t-(end-TW))/(2*TW));
+    if(tout.startsWith('bars')||tout==='flash'||tout==='split'){ if(t>=end) vis=false; }
+    else if(tout.startsWith('iris')){ filt=`brightness(${1-p*.5})`; }
+    else if(tout==='push'){ tfm=`translateX(${-E.inOut(p)*100}%)`; }
+    else if(tout==='zoom'){ op=1-E.in(p); tfm=`scale(${lerp(1,2.2,E.in(p))})`; filt=`blur(${p*14}px)`; }
+  }
+  el.style.visibility=vis?'visible':'hidden';
+  el.style.clipPath=clip; el.style.opacity=op; el.style.filter=filt; el.style.zIndex=z;
+  return {vis,tfm};
+}
+
+// ---------- master render ----------
+window.DURATION=DURATION;
+window.render=function(t){
+  for(const [id,s,e] of SC){
+    const st=sceneStyle(id,s,e,t);
+    if(!st.vis) continue;
+    const el=$('#'+id);
+    el.style.transform='';
+    R[id](t-s);
+    if(st.tfm) el.style.transform=st.tfm+' '+el.style.transform;
+  }
+  // background parallax & mountains
+  const intro=P(t,0,1.6,E.out5);
+  tf($('#mtsFar'),`translateY(${(1-intro)*300}px) translateX(${-t*2}px)`);
+  tf($('#mtsNear'),`translateY(${(1-intro)*400}px) translateX(${-t*4}px)`);
+  renderFx(t);
+  drawSnow(t, t<1?t:1);
+  $('#black').style.opacity=P(t,DURATION-1.2,DURATION,E.inOut);
+};
+window.ready=document.fonts.ready.then(()=>Promise.all([...document.querySelectorAll('.photo')].map(d=>new Promise(r=>{
+  const u=getComputedStyle(d).backgroundImage.slice(5,-2); const i=new Image(); i.onload=i.onerror=r; i.src=u;}))));
+const q=new URLSearchParams(location.search);
+if(q.has('t')) window.ready.then(()=>render(parseFloat(q.get('t'))));
+else if(!q.has('render')){ // live preview
+  let t0=performance.now(); window.ready.then(()=>{(function loop(){render(((performance.now()-t0)/1000)%DURATION);requestAnimationFrame(loop)})()});
+}
+</script>
+</body>
+</html>
