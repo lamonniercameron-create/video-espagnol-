@@ -3,7 +3,7 @@
 - body looped so a second drop lands on "PRIMERA MUJER DE LA HISTORIA" (~1:31)
 - soft intro again under the spoken conclusion
 + the same whooshes / impacts as audio_v2 on the video transitions.
-Usage: python3 audio_v3.py song.wav out.wav
+Usage: python3 audio_v3.py song.wav out.wav [deezer_preview.mp3]
 """
 import subprocess, sys, wave
 import numpy as np
@@ -15,23 +15,40 @@ src, out = sys.argv[1], sys.argv[2]
 raw = subprocess.run(['ffmpeg', '-loglevel', 'error', '-i', src, '-ac', '2', '-ar', str(SR), '-f', 's16le', '-'],
                      capture_output=True, check=True).stdout
 song = np.frombuffer(raw, '<i2').reshape(-1, 2) / 32768.0
-song = song / np.abs(song[:int(54 * SR)]).max() * 0.8
+# optional: Deezer's public 30 s preview, which overlaps the TikTok excerpt at 47.832 s and continues
+# 24 s further -> one continuous 77 s take of the song (spliced on a bar line, gain-matched)
+PREVIEW_AT = 47.8324
+if len(sys.argv) > 3:
+    raw2 = subprocess.run(['ffmpeg', '-loglevel', 'error', '-i', sys.argv[3], '-ac', '2', '-ar', str(SR), '-f', 's16le', '-'],
+                          capture_output=True, check=True).stdout
+    prev = np.frombuffer(raw2, '<i2').reshape(-1, 2) / 32768.0
+    ov_a = song[int(48.8 * SR):int(52.8 * SR)]; ov_b = prev[int((48.8 - PREVIEW_AT) * SR):int((52.8 - PREVIEW_AT) * SR)]
+    prev = prev * np.sqrt((ov_a ** 2).mean() / (ov_b ** 2).mean())
+    cut = int((16.31 + 18 * 4 * 60 / 130.02) * SR)          # bar line inside the overlap (~49.54 s)
+    xf0 = int(0.05 * SR); off = int(PREVIEW_AT * SR)
+    tail = prev[cut - off - xf0:].copy()
+    head = song[:cut].copy()
+    head[-xf0:] *= np.linspace(1, 0, xf0)[:, None]; tail[:xf0] *= np.linspace(0, 1, xf0)[:, None]
+    song = np.concatenate([head[:-xf0], head[-xf0:] + tail[:xf0], tail[xf0:]])
+song = song / np.abs(song).max() * 0.8
 
 BAR_S = 4 * 60 / 130.02          # song bar length
 D = 16.31                          # first downbeat of the drop in the song
 END = D + 19 * BAR_S               # end of the usable body (before the song's outro)
-SHIFT = 0.74                       # start offset so both drops sit on their visual hits
+SHIFT = 0.80                       # start offset so both drops sit on their visual hits
 
 # (song_start, song_end) segments played back to back
-segs = [(0.0, D),                   # intro
-        (D - 7 * BAR_S, D),                      # 7 more intro bars -> drop at ~0:30
-        (D, END),                                # body (19 bars)
-        (D, D + 14 * BAR_S),                     # 14 bars -> next drop at ~1:31
-        (D, END),                                # body again
-        (D - 8 * BAR_S, D + 3 * BAR_S)]         # soft intro under the conclusion (+2 bars into the beat, faded)
+if len(sys.argv) > 3:   # continuous take: only 2 joins (ambient intro loop + jump hidden under the 1:31 impact)
+    segs = [(0.0, D),                            # intro
+            (D - 7 * BAR_S, D),                  # 7 more ambient intro bars -> beat at ~0:30
+            (D, D + 33 * BAR_S),                 # 61 s of the song in one take -> ~1:31
+            (D, D + 32 * BAR_S)]                 # back to the beat entry on "PRIMERA MUJER", to the end
+else:
+    segs = [(0.0, D), (D - 7 * BAR_S, D), (D, END), (D, D + 14 * BAR_S), (D, END),
+            (D - 8 * BAR_S, D + 3 * BAR_S)]
 music = np.zeros((N, 2))
 pos = int(SHIFT * SR)
-xf = int(0.03 * SR)
+xf = int(0.06 * SR)
 for a, b in segs:
     seg = song[int(a * SR):int(b * SR)].copy()
     seg[:xf] *= np.linspace(0, 1, xf)[:, None]

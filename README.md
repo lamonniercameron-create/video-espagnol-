@@ -8,7 +8,7 @@ Vidéo d'origine : [Canal Once, « Conoce a Viridiana Álvarez, alpinista mexica
 ## Comment c'est fabriqué
 L'animation est entièrement codée (HTML/CSS/JS) dans `video/index.html` : chaque image est calculée à partir du temps `t`.
 - `video/render.mjs` capture les images avec Playwright (Chromium) et les encode avec ffmpeg
-- `video/audio_v3.py` remonte la chanson choisie (130 BPM, extraite de la vidéo TikTok fournie, non versionnée : `video/music/chanson.wav`) sur sa grille de mesures : intro allongée pour que le drop tombe à 0:30, puis relancé sur « PRIMERA MUJER » (1:31) ; + whoosh/impacts sur les transitions
+- `video/audio_v3.py` remonte la chanson choisie (« Caliente », Inna ; extrait TikTok raccordé à l’extrait public Deezer de 30 s pour obtenir 77 s d’un seul tenant) (130 BPM, extraite de la vidéo TikTok fournie, non versionnée : `video/music/chanson.wav`) sur sa grille de mesures : intro allongée pour que le drop tombe à 0:30, puis relancé sur « PRIMERA MUJER » (1:31) ; + whoosh/impacts sur les transitions
 - `video/audio_v2.py` : ancienne bande-son (« Volatile Reaction », Kevin MacLeod, CC BY 4.0)
 - `video/make_clouds.py` génère les nuages traversés par la caméra
 - Photos : Pexels (licence libre) · Images du reportage : Canal Once
