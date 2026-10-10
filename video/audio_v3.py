@@ -60,7 +60,8 @@ for a, b in segs:
     if pos >= N:
         break
 
-mix = music * 0.85
+import os
+mix = music * (0.0 if os.environ.get('NO_MUSIC') else 0.85)   # NO_MUSIC=1 -> sound effects only
 rng = np.random.default_rng(3)
 BEAT = 60 / 155; BAR = 4 * BEAT; PH = 0.38
 B = lambda n: PH + n * BAR
