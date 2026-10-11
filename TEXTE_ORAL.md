@@ -49,7 +49,7 @@
 
 > Viridiana nació en **1983** en **Aguascalientes**, en México. Hoy es **alpinista, conferencista y empresaria** *(da conferencias para motivar a la gente)*. Pero su historia empieza muy lejos de la nieve…
 
-⏩ **Signal :** un **flash doré** et **la musique explose** (le drop). C'est la scène 4.
+⏩ **Signal :** un **flash doré**, puis une foule de **coureurs de marathon** apparaît. C’est la scène 4.
 
 ---
 
